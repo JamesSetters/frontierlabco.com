@@ -4,24 +4,24 @@
   <meta charset="UTF-8">
   <title>Services - Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --orange: #ff6a00;
-      --orange-glow: #ff6a00cc;
-      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
+      --yellow: #ffb347;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 80%, #ff9033 100%);
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
-      --nav-glass: rgba(20,20,20,0.92);
-      --panel-glass: rgba(28,28,28,0.84);
+      --nav-glass: rgba(24,24,24,0.97);
+      --panel-glass: rgba(28,28,28,0.89);
     }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
-      background: var(--black);
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #181818 0%, #232323 100%);
       color: var(--grey);
       min-height: 100vh;
       box-sizing: border-box;
@@ -29,13 +29,13 @@
     header {
       background: var(--nav-glass);
       backdrop-filter: blur(8px);
-      padding: 1.5rem 0 1rem 0;
-      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.09);
+      padding: 1.3rem 0 1.1rem 0;
+      box-shadow: 0 4px 22px 0 #181818bb, 0 2px 14px 0 #ff6a0018;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      border-bottom: 1.5px solid #282828;
+      border-bottom: 2px solid #232323;
     }
     .logo {
       background: var(--orange-grad);
@@ -43,81 +43,61 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 2.5px;
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-      margin-bottom: 0.3rem;
-      filter: drop-shadow(0 0 5px #ffb34744);
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      margin-bottom: 0.24rem;
+      filter: drop-shadow(0 0 6px #ffb34733);
     }
     nav {
-      margin-top: 0.3rem;
+      margin-top: 0.1rem;
       display: flex;
-      gap: 1.2rem;
+      gap: 1.1rem;
     }
     nav a {
-      color: #c6c6c6;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      color: #e3e3e3;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       letter-spacing: 1.2px;
-      padding: 0.35rem 1.1rem;
-      border-radius: 22px;
+      padding: 0.33rem 1.09rem;
+      border-radius: 20px;
       border: none;
       background: none;
+      transition: color 0.2s, background 0.2s, box-shadow 0.17s;
+      font-weight: 600;
       position: relative;
-      transition: color 0.2s, background 0.2s;
       z-index: 1;
       overflow: hidden;
     }
-    nav a:hover:not(.resume-btn) {
+    nav a:hover,
+    nav a:focus {
       color: var(--orange);
-      background: rgba(255, 106, 0, 0.10);
+      background: #232323;
+      box-shadow: 0 0 8px #ff6a0040;
     }
     .resume-btn {
-      color: var(--grey);
-      font-weight: 800;
-      padding: 0.35rem 1.5rem;
-      border-radius: 28px;
-      border: none;
       background: var(--orange-grad);
-      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
-      text-shadow: 0 0 3px #ffb34788, 0 0 7px #ff6a00cc;
-      letter-spacing: 1.5px;
-      font-size: 1.12rem;
-      margin-left: 0.2rem;
-      transition: box-shadow 0.2s, background 0.25s, color 0.2s;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      outline: 1.5px solid #ffb34744;
-      cursor: pointer;
+      color: #181818;
+      font-weight: 800;
+      padding: 0.33rem 1.3rem;
+      border-radius: 22px;
+      border: none;
+      margin-left: 0.3rem;
+      transition: background 0.18s, color 0.15s;
+      box-shadow: 0 2px 10px #ffb34755;
+      letter-spacing: 1.2px;
     }
-    .resume-btn::after {
-      content: "";
-      display: block;
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      pointer-events: none;
-      box-shadow: 0 0 16px 6px #ff6a0030, 0 0 40px 3px #ffb34750;
-      opacity: 0.45;
-      z-index: -1;
-      transition: opacity 0.25s;
-    }
-    .resume-btn:hover, .resume-btn:focus {
-      color: #232323;
-      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
-      box-shadow: 0 0 20px 5px #ff903344, 0 0 80px 3px #ffb34799;
-      outline: 2.5px solid #ff6a00dd;
-    }
-    .resume-btn:active {
-      background: var(--orange);
+    .resume-btn:hover,
+    .resume-btn:focus {
+      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
       color: #fff;
+      box-shadow: 0 0 32px 9px #ff903344;
     }
     .container {
-      max-width: 900px;
+      max-width: 1050px;
       margin: 2.5rem auto 2rem auto;
       background: var(--panel-glass);
       border-radius: 18px;
@@ -126,69 +106,132 @@
       border: 1.2px solid #232323;
       backdrop-filter: blur(2px);
     }
-    h1, h2 {
+    h1 {
       color: var(--orange);
       letter-spacing: 1.2px;
       text-shadow: 0 0 8px #ffb34744;
       font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
       margin-top: 0;
+      font-size: 2.2rem;
+      margin-bottom: 0.7rem;
     }
-    h1 {
-      font-size: 2.3rem;
-      margin-bottom: 0.3rem;
+    .intro {
+      font-size: 1.18rem;
+      color: var(--grey);
+      margin-bottom: 2.1rem;
+      line-height: 1.5;
     }
-    h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1.2rem;
-      margin-top: 2.1rem;
-    }
-    .services-list {
+    .services-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
+      justify-content: center;
+      margin-top: 1.2rem;
     }
-    .service-block {
-      flex: 1 1 320px;
-      background: linear-gradient(120deg, #232323 60%, #ff6a0025 100%);
-      border-left: 4px solid var(--orange);
+    .service-card {
+      flex: 1 1 245px;
+      background: #232323;
+      color: var(--grey);
       border-radius: 13px;
-      padding: 1.5rem 1rem 1.3rem 1.3rem;
-      box-shadow: 0 2px 16px rgba(255,106,0,0.11), 0 1.5px 6px #ffb34722;
+      padding: 1.35rem 1.1rem 1.1rem 1.25rem;
+      box-shadow: 0 2px 14px #ffb34714, 0 1.5px 6px #ff6a0022;
+      min-width: 220px;
+      max-width: 300px;
+      border-left: 6px solid var(--orange);
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
       margin-bottom: 1rem;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
     }
-    .service-block:hover {
-      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
-      border-left: 4px solid #ffb347;
+    .service-card:hover {
+      box-shadow: 0 0 16px 0 #ffb34740;
+      border-left: 6px solid var(--yellow);
+      background: #292929;
+      color: var(--yellow);
     }
-    .service-block h3 {
+    .service-title {
       color: var(--orange);
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      margin-top: 0.2rem;
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       letter-spacing: 1px;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
       text-shadow: 0 0 5px #ffb34733;
     }
-    .service-block ul {
-      margin: 0 0 0 1.1rem;
-      padding: 0;
+    .service-desc {
       font-size: 1rem;
+      color: inherit;
+      font-family: inherit;
+      font-weight: 400;
     }
-    .service-block li {
-      margin-bottom: 0.5rem;
+    /* Contact Info Styling */
+    .contact-section {
+      margin: 3rem auto 0 auto;
+      max-width: 540px;
+      background: #222226;
+      border-radius: 16px;
+      padding: 2.1rem 1.1rem 1.5rem 1.1rem;
+      box-shadow: 0 2px 24px #ff6a0016;
+      border: 1.5px solid #232323;
+      text-align: center;
     }
-    @media (max-width: 900px) {
-      .container { padding: 1.3rem 0.5rem; }
-      .services-list { gap: 1.1rem; }
-      .service-block { padding: 1rem 0.6rem 0.9rem 1rem; }
-      h1 { font-size: 1.4rem; }
+    .contact-section h2 {
+      color: var(--orange);
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.43rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px #ffb34733;
     }
-    @media (max-width: 600px) {
-      .container { padding: 0.4rem 0.1rem; }
-      .services-list { flex-direction: column; }
+    .contact-section .headline {
+      color: var(--yellow);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .contact-section .info {
+      color: #ececec;
+      margin-bottom: 0.4rem;
+      font-size: 1.06rem;
+    }
+    .contact-section a {
+      color: var(--orange);
+      text-decoration: underline;
+      font-weight: 700;
+      transition: color 0.15s;
+    }
+    .contact-section a:hover {
+      color: var(--yellow);
+    }
+    .contact-section .fine-print {
+      color: #bbbbbb;
+      margin-top: 0.8rem;
+      font-size: 0.98rem;
+      font-style: italic;
+    }
+    footer {
+      background: var(--nav-glass);
+      color: var(--grey);
+      text-align: center;
+      padding: 1.1rem 0 1rem 0;
+      margin-top: 3rem;
+      font-size: 1.02rem;
+      letter-spacing: 1px;
+      border-top: 1px solid #282828;
+      box-shadow: 0 -4px 18px 0 #ff6a0011;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    @media (max-width: 1100px) {
+      .container { padding: 1.1rem 0.2rem; }
+      .services-grid { gap: 1.1rem; }
+      .service-card { padding: 1rem 0.6rem 0.9rem 0.8rem; }
+      h1 { font-size: 1.5rem; }
+    }
+    @media (max-width: 700px) {
+      nav { flex-direction: column; gap: 0.5rem; }
+      .logo { font-size: 1.45rem; }
+      .services-grid { flex-direction: column; gap: 1.1rem; }
+      .service-card { max-width: 100%; min-width: 0; }
     }
   </style>
 </head>
@@ -198,6 +241,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
@@ -205,73 +249,61 @@
   </header>
   <div class="container">
     <h1>Our Services</h1>
-    <p>
-      At Frontier Labs, we turn ideas into reality with advanced design, prototyping, and fabrication solutions for innovators, entrepreneurs, and businesses.
-    </p>
-    <div class="services-list">
-      <div class="service-block">
-        <h3>Prototyping</h3>
-        <ul>
-          <li>Rapid 3D printing of functional prototypes and models</li>
-          <li>Physical and digital mock-ups</li>
-          <li>Iterative design improvements</li>
-        </ul>
+    <div class="intro">
+      <b>Frontier Labs</b> offers high-quality prototyping, design, and R&D services—whether you need a single part, a custom prototype, or ongoing engineering collaboration. We serve North Idaho, the Northwest, and remote clients anywhere.
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-title">3D Printing & Rapid Prototyping</div>
+        <div class="service-desc">
+          Fast, accurate prints from your file or ours. PLA, PETG, wood composites, and more. Ideal for parts, models, and one-offs.
+        </div>
       </div>
-      <div class="service-block">
-        <h3>Custom Product Design</h3>
-        <ul>
-          <li>Full CAD modeling and 3D assemblies</li>
-          <li>Concept to production-ready designs</li>
-          <li>Consumer goods, tools, fixtures, and more</li>
-        </ul>
+      <div class="service-card">
+        <div class="service-title">Mechanical Design (CAD)</div>
+        <div class="service-desc">
+          Fusion 360 & SolidWorks expertise for new products, fixtures, and inventions. Full project documentation available.
+        </div>
       </div>
-      <div class="service-block">
-        <h3>Laser Cutting & Engraving</h3>
-        <ul>
-          <li>Precision cutting and engraving on plastics, wood, and select materials</li>
-          <li>Custom signage, enclosures, panels, and art</li>
-        </ul>
+      <div class="service-card">
+        <div class="service-title">Laser Cutting & Custom Fabrication</div>
+        <div class="service-desc">
+          Cut, etch, and prototype in wood, acrylic, or select plastics. Signs, panels, templates, and more.
+        </div>
       </div>
-      <div class="service-block">
-        <h3>Research & Development</h3>
-        <ul>
-          <li>End-to-end R&D for startups and small businesses</li>
-          <li>Mechanical system design and troubleshooting</li>
-          <li>Testing and refinement of innovative concepts</li>
-        </ul>
+      <div class="service-card">
+        <div class="service-title">Research & Development</div>
+        <div class="service-desc">
+          Turn your idea into reality, or let us troubleshoot, refine, and document your next project.
+        </div>
       </div>
-      <div class="service-block">
-        <h3>Technical Consultation</h3>
-        <ul>
-          <li>Expert advice on design feasibility and manufacturing methods</li>
-          <li>Process optimization and lean manufacturing strategies</li>
-        </ul>
-      </div>
-      <div class="service-block">
-        <h3>Digital Training & Support</h3>
-        <ul>
-          <li>Instructional videos and tutorials for CAD & modeling software</li>
-          <li>Ongoing support for clients and teams</li>
-        </ul>
+      <div class="service-card">
+        <div class="service-title">Extreme Sports & Racing Solutions</div>
+        <div class="service-desc">
+          Custom mounts, brackets, and gear for racers, riders, and enthusiasts. Engineered for durability.
+        </div>
       </div>
     </div>
   </div>
-  <section>
-  <h2>Contact & Free Quotes</h2>
-  <div style="font-size:1.14rem; color:#ffb347; font-weight:600; margin-bottom:0.5rem;">
-    Need a service or want a custom prototype?
-  </div>
-  <div style="color:#ececec; margin-bottom:0.4rem;">
-    <b>Email:</b> <a href="mailto:frontier.labs208@gmail.com" style="color:#ff6a00; text-decoration:underline;">frontier.labs208@gmail.com</a>
-  </div>
-  <div style="color:#ececec; margin-bottom:0.4rem;">
-    <b>Phone:</b> <a href="tel:+12089200565" style="color:#ff6a00; text-decoration:underline;">(208) 920-0565</a>
-  </div>
-  <div style="color:#bfbfbf;">
-    Reach out anytime for a <b>free quote</b> or to discuss your project ideas. Fast replies, honest advice, and clear communication guaranteed.
-  </div>
-</section>
-
+  <!-- CONTACT INFO SECTION -->
+  <section class="contact-section">
+    <h2>Contact & Free Quotes</h2>
+    <div class="headline">
+      Need a service or want a custom prototype?
+    </div>
+    <div class="info">
+      <b>Email:</b>
+      <a href="mailto:frontier.labs208@gmail.com">frontier.labs208@gmail.com</a>
+    </div>
+    <div class="info">
+      <b>Phone:</b>
+      <a href="tel:+12089200565">(208) 920-0565</a>
+    </div>
+    <div class="fine-print">
+      Reach out any time for a <b>free quote</b> or to discuss your project ideas.<br>
+      Fast replies, honest advice, and clear communication guaranteed.
+    </div>
+  </section>
   <footer>
     &copy; 2025 Frontier Labs. All rights reserved.
   </footer>
