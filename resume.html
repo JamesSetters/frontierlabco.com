@@ -15,15 +15,17 @@
       --grey: #ececec;
       --dark-grey: #232323;
       --nav-glass: rgba(20,20,20,0.92);
+      --panel-glass: rgba(28,28,28,0.84);
     }
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
+      padding: 0;
       font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
       background: var(--black);
       color: var(--grey);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      box-sizing: border-box;
     }
     header {
       background: var(--nav-glass);
@@ -115,14 +117,99 @@
       background: var(--orange);
       color: #fff;
     }
+    .hero {
+      background: linear-gradient(120deg, #231a16 20%, #ff6a0020 55%, #181818 100%);
+      padding: 5.2rem 1.2rem 4rem 1.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 16px #ff903344, 0 0 2px #ffb34766;
+      filter: drop-shadow(0 0 18px #ff6a0025);
+    }
+    .hero p {
+      color: var(--grey);
+      font-size: 1.4rem;
+      max-width: 550px;
+      margin: 0 auto;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px #181818a0;
+    }
+    section {
+      max-width: 940px;
+      margin: 2.8rem auto 0 auto;
+      padding: 2rem 1.2rem;
+      background: var(--panel-glass);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0035;
+      backdrop-filter: blur(2px);
+      border: 1.2px solid #232323;
+      transition: background 0.3s;
+    }
+    section h2 {
+      color: var(--orange);
+      font-size: 2.1rem;
+      margin-bottom: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-shadow: 0 0 6px #ffb34740;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .service {
+      flex: 1 1 260px;
+      background: linear-gradient(120deg, #232323 60%, #ff6a0022 100%);
+      color: var(--grey);
+      border-left: 4px solid var(--orange);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(255,106,0,0.07), 0 1.5px 6px #ffb34722;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .service:hover {
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
+      border-left: 4px solid #ffb347;
+    }
+    footer {
+      background: var(--nav-glass);
+      color: var(--grey);
+      text-align: center;
+      padding: 1.1rem 0 1rem 0;
+      margin-top: auto;
+      font-size: 1.02rem;
+      letter-spacing: 1px;
+      border-top: 1px solid #282828;
+      box-shadow: 0 -4px 18px 0 #ff6a0011;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      section { padding: 1.2rem 0.4rem; }
+      .services { gap: 1rem; }
+      .service { padding: 1.1rem; }
+      .hero h1 { font-size: 2.1rem; }
+    }
     @media (max-width: 700px) {
-      nav {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .logo {
-        font-size: 1.6rem;
-      }
+      nav { flex-direction: column; gap: 0.5rem; }
+      .logo { font-size: 1.45rem; }
+      section h2 { font-size: 1.32rem; }
+      .hero { padding: 3.2rem 0.3rem 2rem 0.3rem; }
+      .hero h1 { font-size: 1.45rem; }
     }
   </style>
 </head>
@@ -137,6 +224,43 @@
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
   </header>
-  <!-- ...rest of your site here... -->
+
+  <div class="hero">
+    <h1>Innovation at the Edge</h1>
+    <p>Prototyping, R&D, and Design Services that help you push boundaries and turn ideas into reality.</p>
+  </div>
+
+  <section>
+    <h2>About Us</h2>
+    <p>
+      Frontier Labs is a creative prototyping and design studio based in North Idaho. We specialize in product design, 3D printing, laser cutting, and R&D for innovators, entrepreneurs, and businesses who want to bring bold ideas to life.
+    </p>
+  </section>
+
+  <section>
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Prototyping</h3>
+        <p>From 3D printing to rapid mock-ups, we help you visualize and test your concepts fast and affordably.</p>
+      </div>
+      <div class="service">
+        <h3>Custom Product Design</h3>
+        <p>Full-service CAD modeling and digital design for consumer goods, tools, and custom projects.</p>
+      </div>
+      <div class="service">
+        <h3>Laser Cutting & Engraving</h3>
+        <p>Precision cutting and engraving on plastics, woods, and more to take your project to the next level.</p>
+      </div>
+      <div class="service">
+        <h3>R&D Solutions</h3>
+        <p>From concept to working prototype, we support inventors, businesses, and startups with custom solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
 </body>
 </html>
