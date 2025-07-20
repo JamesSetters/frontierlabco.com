@@ -2,205 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Resume - James Setters</title>
+  <title>Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Futuristic Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --orange: #ff6a00;
+      --orange-glow: #ff6a00cc;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
+      --nav-glass: rgba(20,20,20,0.92);
     }
     body {
-      background: var(--black);
-      color: var(--grey);
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
       margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: var(--dark-grey);
-      border-radius: 16px;
-      box-shadow: 0 4px 18px 0 rgba(0,0,0,0.14);
-      padding: 2rem 1.5rem;
-    }
-    h1, h2, h3 {
-      color: var(--orange);
-      margin-top: 1.5rem;
-      margin-bottom: 0.6rem;
-      letter-spacing: 1px;
-    }
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-    }
-    .contact {
-      color: var(--grey);
-      font-size: 1.08rem;
-      margin-bottom: 1.6rem;
-    }
-    .section {
-      margin-bottom: 1.5rem;
-    }
-    .job-title {
-      font-weight: bold;
-      color: var(--orange);
-    }
-    .job-details {
-      font-size: 1rem;
-      color: #bbbbbb;
-    }
-    .skills, .certs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
-      margin-top: 0.5rem;
-      font-size: 1rem;
-    }
-    .skills span, .certs span {
+      font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
       background: var(--black);
-      border: 1px solid var(--orange);
-      border-radius: 16px;
-      padding: 0.25rem 0.9rem;
+      color: var(--grey);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--nav-glass);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 0 1rem 0;
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.09);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1.5px solid #282828;
+    }
+    .logo {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(0 0 5px #ffb34744);
+    }
+    nav {
+      margin-top: 0.3rem;
+      display: flex;
+      gap: 1.2rem;
+    }
+    nav a {
+      color: #c6c6c6;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 1.1rem;
+      border-radius: 22px;
+      border: none;
+      background: none;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+      z-index: 1;
+      overflow: hidden;
+    }
+    nav a:hover:not(.resume-btn) {
       color: var(--orange);
+      background: rgba(255, 106, 0, 0.10);
     }
-    a {
-      color: var(--orange);
-      text-decoration: underline;
-      word-break: break-all;
+    .resume-btn {
+      color: var(--grey);
+      font-weight: 800;
+      padding: 0.35rem 1.5rem;
+      border-radius: 28px;
+      border: none;
+      background: var(--orange-grad);
+      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
+      text-shadow: 0 0 3px #ffb34788, 0 0 7px #ff6a00cc;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.2rem;
+      transition: box-shadow 0.2s, background 0.25s, color 0.2s;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
     }
-    .group, .publication {
-      margin-bottom: 1.2rem;
+    .resume-btn::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      pointer-events: none;
+      box-shadow: 0 0 16px 6px #ff6a0030, 0 0 40px 3px #ffb34750;
+      opacity: 0.45;
+      z-index: -1;
+      transition: opacity 0.25s;
     }
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem 0.5rem;
+    .resume-btn:hover, .resume-btn:focus {
+      color: #232323;
+      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
+      box-shadow: 0 0 20px 5px #ff903344, 0 0 80px 3px #ffb34799;
+      outline: 2.5px solid #ff6a00dd;
+    }
+    .resume-btn:active {
+      background: var(--orange);
+      color: #fff;
+    }
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
       }
-      h1 {
-        font-size: 1.5rem;
+      .logo {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>James Setters</h1>
-    <div class="contact">
-      <div>Spirit Lake, ID 83869</div>
-      <div>Phone: <a href="tel:+12089200565">+1 (208) 920-0565</a></div>
-      <div>Email: <a href="mailto:jameslsetters@gmail.com">jameslsetters@gmail.com</a></div>
-      <div>Willing to relocate to Coeur d'Alene, ID</div>
-    </div>
-
-    <div class="section">
-      <h2>Summary</h2>
-      <p>
-        Versatile mechanical engineering professional with 3 years of experience in research and development, specializing in 3D modeling and mechanical design. Proven ability to implement design changes and troubleshoot complex systems, demonstrated through successful projects involving large-scale 3D printing. Skilled in SolidWorks, Fusion 360, and Agtek 4D, with a strong foundation in lean manufacturing principles. Committed to continuous improvement and innovation in engineering solutions.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Work Experience</h2>
-      <div>
-        <span class="job-title">Direct Support Professional (DSP)</span> <span class="job-details">— Community Connections, Inc., Post Falls, ID (May 2025 – Present)</span>
-        <ul>
-          <li>Assist people with developmental disabilities in their daily tasks.</li>
-        </ul>
-      </div>
-      <div>
-        <span class="job-title">Research Lab Assistant</span> <span class="job-details">— University of Idaho, Moscow, ID (Aug 2024 – May 2025)</span>
-        <ul>
-          <li>Worked on a continuous casting project using a 3D printer to cast solid rods without a mold.</li>
-          <li>Implemented design changes to improve system consistency.</li>
-          <li>Handled extensive troubleshooting and iterative design.</li>
-        </ul>
-      </div>
-      <div>
-        <span class="job-title">Internship</span> <span class="job-details">— RDO Equipment Co., Billings, MT (May 2021 – May 2025)</span>
-        <ul>
-          <li>Used Agtek to 3D model dirt work for construction sites.</li>
-          <li>Worked remotely while supporting a team of 3D modelers.</li>
-          <li>Created instructional videos for 3D modeling software.</li>
-        </ul>
-      </div>
-      <div>
-        <span class="job-title">Clerical Assistant/Tutor</span> <span class="job-details">— University of Idaho, Moscow, ID (Aug 2024 – Dec 2024)</span>
-        <ul>
-          <li>Graded papers in a fluid dynamics class.</li>
-          <li>Corrected student mistakes and performed data entry.</li>
-        </ul>
-      </div>
-      <div>
-        <span class="job-title">Research Lab Assistant</span> <span class="job-details">— University of Idaho, Moscow, ID (May 2023 – Aug 2023)</span>
-        <ul>
-          <li>Designed and built a large-scale 3D printer for 3D printed wooden house feasibility testing.</li>
-          <li>Designed systems with SolidWorks and presented to the team weekly.</li>
-          <li>Manufactured and implemented custom designs.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Education</h2>
-      <div><b>Bachelor of Mechanical Engineering</b> — University of Idaho, Moscow, ID (Aug 2021 – May 2025)</div>
-      <div><b>Minors:</b> Mathematics, Physics, Pre-Health Professional Studies</div>
-    </div>
-
-    <div class="section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>Drafting</span>
-        <span>Lean Manufacturing</span>
-        <span>Fusion 360</span>
-        <span>Mechanical Design</span>
-        <span>Research & Development</span>
-        <span>Product Development</span>
-        <span>MATLAB</span>
-        <span>Mechanical Engineering</span>
-        <span>Manufacturing</span>
-        <span>SolidWorks</span>
-        <span>CAD</span>
-        <span>Continuous Improvement</span>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Certifications & Licenses</h2>
-      <div class="certs">
-        <span>AED Certification (June 2025–June 2027)</span>
-        <span>First Aid Certification (June 2025–June 2027)</span>
-        <span>CPR Certification (June 2025–June 2027)</span>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Groups</h2>
-      <div class="group">
-        <b>PrinTimber</b> (Feb 2023 – May 2025)  
-        <div>
-          “PrinTimber is a project and a material. We are developing the science necessary to use 100% bio-based materials for the Advanced Housing Manufacturing Economy of the Future. We take minimally processed natural material waste products and turn them into 3D printed houses. Our process sequesters carbon, uses local materials, and results in a printed structure with a familiar wood feel – because it is wood. The PrinTimber Lab is on the cutting edge of printing with bio-based thermoset composites.”
-        </div>
-        <div>
-          <a href="https://printimber.org" target="_blank">printimber.org</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Publications</h2>
-      <div class="publication">
-        <b>Influence of metakaolin and acetic acid on sodium silicate-based inorganic bonded wood composites for additive manufacturing</b><br>
-        <a href="https://www.sciencedirect.com/science/article/pii/S2590048X25000536" target="_blank">
-          https://www.sciencedirect.com/science/article/pii/S2590048X25000536
-        </a><br>
-        <span>June 2025</span>
-        <p style="font-size: 0.98rem; color: #bbbbbb; margin-top: 0.5rem;">
-          Aluminosilicates such as geopolymers show promise as formaldehyde-free binders for inorganic-bonded wood composites. Understanding the curing behavior, mechanical properties, and wet performance of these composites is necessary to advance inorganic-bonded wood composites for construction additive manufacturing (AM) applications. This study examined the effects of metakaolin content, curing temperature, and acetic acid treatment on the dry and wet properties of wood-sodium silicate composites for AM. Wood-sodium silicate-metakaolin composite (WSSMC) formulations with 50 wt% wood fiber and 50 wt% binder were prepared with varying sodium silicate to metakaolin content (0, 5, 10 wt%). Dynamic rheology demonstrated suitable shear-thinning behavior and extrudability for formulations containing up to 10 wt% metakaolin. These composites displayed glass transition temperatures ranging between 181 and 201 °C (peak of Eʹʹ), and true densities increased with increasing curing temperature. Cold-pressed and extruded composites were subjected to acetic acid treatment and subsequent water soaking. Composites after acid treatment displayed changes to aluminosilicate bonds identified using Fourier transform infrared spectroscopy. Acid treated composites exhibited higher flexural (3–10 MPa) and compressive strengths (9–23 MPa) and lower weight gain and thickness swelling after water soaking compared to untreated composites. Flexural and compressive strengths were highest for dry, untreated composites (8–13 MPa and 12–34 MPa, respectively), especially when cured at lower temperatures (60 °C and 105 °C). This work provides insight into the use of acetic acid to improve the wet performance of inorganic bonded wood composites and demonstrates the potential for using metakaolin in inorganic bonded wood composites for novel wood composite additive manufacturing for construction.
-        </p>
-      </div>
-    </div>
-  </div>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a href="resume.html" class="resume-btn">Resume</a>
+    </nav>
+  </header>
+  <!-- ...rest of your site here... -->
 </body>
 </html>
