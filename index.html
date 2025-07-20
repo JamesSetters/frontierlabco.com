@@ -4,275 +4,222 @@
   <meta charset="UTF-8">
   <title>Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Futuristic Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Modern Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #ff6a00;
-      --yellow: #ffb347;
-      --blue: #3fd0ff;
-      --soft-blue: #0fd0ff22;
-      --light-blue: #a1f2ff44;
-      --orange-glow: #ff6a00cc;
-      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
-      --black: #181818;
-      --grey: #ececec;
-      --dark-grey: #232323;
-      --nav-glass: rgba(24,28,38,0.91);
-      --panel-glass: rgba(38,40,44,0.89);
-      --hero-glass: rgba(30,32,36,0.90);
+      --blue: #033649;
+      --charcoal: #52595d;
+      --soft-orange: #FFA54B;
+      --bright-orange: #FF6F2C;
+      --soft-teal: #498B87;
+      --deep-teal: #257176;
+      --white: #f7f7f8;
     }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', 'Segoe UI', 'Roboto', Arial, sans-serif;
-      background: linear-gradient(135deg, #1a1a1f 0%, #282a33 55%, #1d1e22 100%);
-      color: var(--grey);
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
       min-height: 100vh;
-      box-sizing: border-box;
     }
     header {
-      background: var(--nav-glass);
-      backdrop-filter: blur(12px);
-      padding: 1.3rem 0 1.1rem 0;
-      box-shadow: 0 6px 32px 0 #161920bb, 0 2px 14px 0 #ff6a0018;
+      background: var(--blue);
+      color: var(--white);
+      padding: 1.4rem 0 1rem 0;
+      box-shadow: 0 2px 12px 0 #03364912;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      border-bottom: 1.5px solid #22292f;
+      align-items: center;
+      border-bottom: 2.5px solid var(--deep-teal);
     }
     .logo {
-      background: linear-gradient(90deg, #ffb347 15%, #ff6a00 60%, #3fd0ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      font-size: 2.7rem;
-      font-weight: 900;
-      letter-spacing: 2.8px;
-      text-transform: uppercase;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      margin-bottom: 0.22rem;
-      filter: drop-shadow(0 0 6px #ffb34745) drop-shadow(0 0 3px #3fd0ff66);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--soft-orange);
+      margin-bottom: 0.3rem;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
     nav {
-      margin-top: 0.3rem;
+      margin-top: 0.1rem;
       display: flex;
-      gap: 1.12rem;
+      gap: 1.15rem;
     }
     nav a {
-      color: #e3e3e3;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      color: var(--white);
       text-decoration: none;
-      font-size: 1.07rem;
+      font-size: 1rem;
       letter-spacing: 1.2px;
-      padding: 0.36rem 1.15rem;
-      border-radius: 20px;
-      border: none;
-      background: none;
+      padding: 0.34rem 1.1rem;
+      border-radius: 18px;
+      font-weight: 500;
+      transition: background 0.17s, color 0.18s;
       position: relative;
-      transition: color 0.2s, background 0.2s, box-shadow 0.18s;
-      z-index: 1;
-      overflow: hidden;
-      font-weight: 600;
+      top: 1px;
     }
     nav a:hover:not(.resume-btn) {
-      color: var(--orange);
-      background: var(--soft-blue);
-      box-shadow: 0 0 10px #0fd0ff44;
+      background: var(--deep-teal);
+      color: var(--soft-orange);
     }
     .resume-btn {
-      color: #232323;
-      font-weight: 900;
-      padding: 0.36rem 1.6rem;
-      border-radius: 28px;
-      background: var(--orange-grad);
-      box-shadow: 0 0 14px 3px var(--orange-glow), 0 0 22px 1px #3fd0ff88;
-      text-shadow: 0 0 2px #ffb34799, 0 0 7px #3fd0ff66;
-      letter-spacing: 1.5px;
-      font-size: 1.12rem;
-      margin-left: 0.24rem;
-      transition: box-shadow 0.22s, background 0.21s, color 0.18s;
-      outline: 1.5px solid #ffb34744;
-      cursor: pointer;
+      background: var(--soft-orange);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 0.34rem 1.3rem;
+      border-radius: 20px;
       border: none;
-      position: relative;
-      overflow: hidden;
+      margin-left: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+      box-shadow: 0 2px 10px #FFA54B22;
     }
     .resume-btn:hover, .resume-btn:focus {
-      color: #fff;
-      background: linear-gradient(90deg, #3fd0ff 0%, #ff9033 35%, #ffb347 100%);
-      box-shadow: 0 0 32px 9px #ff903355, 0 0 80px 3px #3fd0ff33;
-      outline: 2px solid #3fd0ff99;
+      background: var(--bright-orange);
+      color: var(--white);
     }
     .hero {
-      background: linear-gradient(120deg, #232532 38%, #ff6a0027 62%, #232323 100%);
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 6px 40px 0 #1d1e22cc, 0 1.2px 6px #3fd0ff12;
-      margin: 0 auto;
-      margin-bottom: 3rem;
-      max-width: 970px;
-      padding: 4.5rem 1.2rem 4.5rem 1.2rem;
+      background: var(--soft-teal);
+      color: var(--white);
+      padding: 4.2rem 1.5rem 3.5rem 1.5rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px 0 #03364913;
+      margin-bottom: 2.2rem;
     }
     .hero h1 {
-      background: linear-gradient(90deg, #ffb347 15%, #ff6a00 55%, #3fd0ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      font-size: 3.6rem;
-      font-weight: 900;
-      letter-spacing: 2.6px;
-      margin-bottom: 0.75rem;
-      margin-top: 0;
-      text-shadow: 0 0 24px #3fd0ff55, 0 0 12px #ff903355;
-      filter: drop-shadow(0 0 15px #ffb34722);
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      margin-bottom: 0.45rem;
+      color: var(--soft-orange);
     }
     .hero p {
-      color: #f7f7f7;
-      font-size: 1.33rem;
-      max-width: 620px;
-      margin: 0 auto 1.2rem auto;
-      letter-spacing: 1.2px;
-      text-shadow: 0 0 12px #1b1b2ba0, 0 0 4px #3fd0ff22;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.18rem;
       font-weight: 400;
+      margin: 0 auto;
+      color: var(--white);
+      max-width: 600px;
     }
     .hero .hero-btns {
-      margin-top: 2.4rem;
+      margin-top: 2.3rem;
       display: flex;
       justify-content: center;
-      gap: 1.4rem;
+      gap: 1.3rem;
       flex-wrap: wrap;
     }
     .hero .hero-btn {
-      background: var(--orange-grad);
-      color: #232323;
+      background: var(--bright-orange);
+      color: var(--white);
       font-weight: 700;
-      border-radius: 18px;
-      padding: 0.78rem 2.1rem;
-      font-size: 1.13rem;
+      border-radius: 15px;
+      padding: 0.68rem 2rem;
+      font-size: 1.07rem;
       letter-spacing: 1.1px;
       border: none;
-      outline: none;
-      box-shadow: 0 0 16px 2px #ff6a0033, 0 0 22px 3px #3fd0ff44;
+      box-shadow: 0 0 10px #ff6f2c22;
       cursor: pointer;
-      transition: background 0.19s, color 0.15s, box-shadow 0.19s;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      transition: background 0.18s, color 0.15s;
+      font-family: inherit;
     }
-    .hero .hero-btn:hover, .hero .hero-btn:focus {
-      background: linear-gradient(90deg, #3fd0ff 0%, #ff9033 100%);
-      color: #fff;
-      box-shadow: 0 0 40px 7px #3fd0ff44;
+    .hero .hero-btn:hover {
+      background: var(--soft-orange);
+      color: var(--blue);
     }
     .hero .hero-btn.secondary {
-      background: linear-gradient(90deg, #23223f 0%, #3fd0ff 100%);
-      color: #fff;
-      font-weight: 800;
-      border: 1.5px solid #ffb34744;
-      box-shadow: 0 0 22px 4px #3fd0ff66;
+      background: var(--deep-teal);
+      color: var(--white);
+      border: 1.5px solid var(--white);
     }
-    section {
-      max-width: 1000px;
-      margin: 2.6rem auto 0 auto;
-      padding: 2.2rem 1.4rem;
-      background: var(--panel-glass);
+    .hero .hero-btn.secondary:hover {
+      background: var(--soft-teal);
+      color: var(--soft-orange);
+    }
+    .main-section {
+      max-width: 950px;
+      margin: 2.2rem auto 0 auto;
+      padding: 2.3rem 1.5rem;
+      background: var(--white);
       border-radius: 18px;
-      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #3fd0ff21;
-      border: 1.1px solid #232323;
-      transition: background 0.3s;
-      position: relative;
+      box-shadow: 0 2px 18px 0 #03364915;
+      border: 1px solid #e5e6e7;
     }
-    section h2 {
-      color: var(--orange);
-      font-size: 2.1rem;
+    .main-section h2 {
+      color: var(--deep-teal);
+      font-size: 1.6rem;
       margin-bottom: 1.1rem;
       font-weight: 700;
-      letter-spacing: 1.2px;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      text-shadow: 0 0 6px #ffb34740;
-      margin-top: 0;
+      letter-spacing: 1.1px;
     }
-    .about-content {
-      color: #d6e0f7;
-      font-size: 1.19rem;
-      line-height: 1.6;
-      letter-spacing: 0.2px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      margin-bottom: 0;
+    .main-section p {
+      color: var(--charcoal);
+      font-size: 1.07rem;
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
     }
     .features {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.6rem;
+      gap: 1.8rem;
+      margin-top: 1.7rem;
       justify-content: center;
     }
     .feature-card {
-      flex: 1 1 240px;
-      background: linear-gradient(120deg, #232323 68%, #ff6a0016 100%);
-      border-left: 4px solid var(--orange);
-      border-radius: 13px;
-      padding: 1.4rem 1.1rem 1.1rem 1.2rem;
-      box-shadow: 0 2px 14px #3fd0ff18, 0 1.5px 6px #ffb34712;
-      margin-bottom: 1rem;
-      min-width: 210px;
-      max-width: 280px;
+      flex: 1 1 230px;
+      background: var(--deep-teal);
+      color: var(--white);
+      border-radius: 11px;
+      padding: 1.3rem 1rem 1.1rem 1.1rem;
+      box-shadow: 0 2px 14px #03364912;
+      min-width: 200px;
+      max-width: 250px;
+      border-left: 6px solid var(--bright-orange);
       transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
-      position: relative;
     }
     .feature-card:hover {
-      box-shadow: 0 0 24px 0 #3fd0ff33;
-      border-left: 4px solid #3fd0ff;
-      background: linear-gradient(120deg, #232323 40%, #3fd0ff22 100%);
+      box-shadow: 0 0 16px 0 #FFA54B33;
+      border-left: 6px solid var(--soft-orange);
+      background: var(--soft-teal);
+      color: var(--charcoal);
     }
     .feature-title {
-      color: var(--blue);
-      font-size: 1.11rem;
+      color: var(--soft-orange);
+      font-size: 1.05rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
       letter-spacing: 1px;
-      text-shadow: 0 0 5px #3fd0ff22;
     }
     .feature-desc {
-      font-size: 1rem;
-      color: #ececec;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 0.99rem;
+      color: inherit;
+      font-family: inherit;
       font-weight: 400;
     }
     footer {
-      background: var(--nav-glass);
-      color: var(--grey);
+      background: var(--charcoal);
+      color: var(--white);
       text-align: center;
       padding: 1.1rem 0 1rem 0;
       margin-top: 3rem;
-      font-size: 1.02rem;
+      font-size: 1.03rem;
       letter-spacing: 1px;
-      border-top: 1px solid #282828;
-      box-shadow: 0 -4px 18px 0 #ff6a0011;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
+      border-top: 2px solid var(--deep-teal);
     }
-    /* Responsive */
-    @media (max-width: 1100px) {
-      section { padding: 1.1rem 0.2rem; }
-      .features { gap: 1.2rem; }
-      .feature-card { padding: 1rem 0.5rem 0.9rem 1rem; }
-      h1 { font-size: 2.1rem; }
-      .hero { padding: 2.2rem 0.4rem 2.6rem 0.4rem; }
+    @media (max-width: 900px) {
+      .main-section { padding: 1.1rem 0.4rem; }
+      .features { gap: 1.1rem; }
+      .feature-card { padding: 1rem 0.4rem 0.9rem 0.8rem; }
+      .hero { padding: 2.6rem 0.3rem 2rem 0.3rem; }
     }
     @media (max-width: 700px) {
       nav { flex-direction: column; gap: 0.5rem; }
-      .logo { font-size: 1.45rem; }
-      section h2 { font-size: 1.32rem; }
-      .hero h1 { font-size: 2rem; }
+      .logo { font-size: 1.2rem; }
+      .main-section h2 { font-size: 1.13rem; }
+      .hero h1 { font-size: 1.4rem; }
+      .feature-card { max-width: 100%; min-width: 0; }
     }
   </style>
 </head>
@@ -290,60 +237,55 @@
   </header>
 
   <div class="hero">
-    <h1>Innovation at the Edge</h1>
+    <h1>Design. Prototype. Build.</h1>
     <p>
-      Designing and prototyping the future. <br>
-      <span style="color: var(--blue); font-weight:700;">3D Printing</span> •
-      <span style="color: var(--orange); font-weight:700;">R&D</span> •
-      <span style="color: var(--yellow); font-weight:700;">Product Design</span> •
-      <span style="color: #baffff;">Extreme Ideas</span>
+      Product design, prototyping, and engineering solutions for innovators and businesses. <br>
+      Based in North Idaho &bull; Powered by creativity and real-world experience.
     </p>
     <div class="hero-btns">
       <a class="hero-btn" href="projects.html">See Projects</a>
-      <a class="hero-btn secondary" href="services.html">What We Do</a>
+      <a class="hero-btn secondary" href="services.html">Our Services</a>
     </div>
   </div>
 
-  <section>
+  <div class="main-section">
     <h2>About Frontier Labs</h2>
-    <div class="about-content">
-      <b>Frontier Labs</b> is a North Idaho-based prototyping and design studio blending engineering discipline with extreme creativity. We help you bring your ideas to life—whether you're a startup, entrepreneur, or a business looking to stand out.
-      <br><br>
-      Our workflow is hands-on and agile: from CAD to 3D printing, laser cutting, sustainable materials, and research collaborations. You dream it, we design and build it.
-    </div>
+    <p>
+      Frontier Labs is a clean, modern prototyping and design studio. We specialize in <span style="color: var(--bright-orange); font-weight:600;">3D printing</span>, <span style="color: var(--soft-orange); font-weight:600;">product design</span>, <span style="color: var(--deep-teal); font-weight:600;">laser cutting</span>, and <span style="color: var(--blue); font-weight:600;">R&D</span> for entrepreneurs, engineers, and teams with bold ideas. Whether you're creating a one-off invention or scaling a business, we turn ideas into reality with a practical, hands-on approach.
+    </p>
     <div class="features">
       <div class="feature-card">
-        <div class="feature-title">Advanced Prototyping</div>
+        <div class="feature-title">Prototyping</div>
         <div class="feature-desc">
-          Rapid 3D printing, functional models, and iterative testing for fast feedback and breakthrough innovation.
+          Functional 3D-printed models and iterative testing. Move fast from idea to proof of concept.
         </div>
       </div>
       <div class="feature-card">
-        <div class="feature-title">Mechanical Design</div>
+        <div class="feature-title">Product Design</div>
         <div class="feature-desc">
-          High-precision CAD, parametric modeling, and product design using Fusion 360, SolidWorks, and more.
+          CAD, assemblies, and design for manufacturing using modern tools and real-world experience.
         </div>
       </div>
       <div class="feature-card">
-        <div class="feature-title">Laser Cutting & Custom Fabrication</div>
+        <div class="feature-title">Laser Cutting</div>
         <div class="feature-desc">
-          Bespoke parts, signage, templates, and more—delivered with speed and accuracy for real-world use.
+          Fast, precision cutting for plastics, wood, and more—jigs, templates, enclosures, and art.
         </div>
       </div>
       <div class="feature-card">
-        <div class="feature-title">R&D Partnerships</div>
+        <div class="feature-title">R&D and Consulting</div>
         <div class="feature-desc">
-          Collaborate on research, product development, and materials engineering for your next breakthrough.
+          Need something new? Get help with design feasibility, process optimization, and technical troubleshooting.
         </div>
       </div>
       <div class="feature-card">
-        <div class="feature-title">Extreme Sports Engineering</div>
+        <div class="feature-title">Extreme Sports Projects</div>
         <div class="feature-desc">
-          Design and prototype gear, tools, and accessories that push the boundaries of performance.
+          Engineering for adventure—custom gear, modifications, and tools for the bold.
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <footer>
     &copy; 2025 Frontier Labs. All rights reserved.
