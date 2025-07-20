@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects - Frontier Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-glow: #ff6a00cc;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
+      --black: #181818;
+      --grey: #ececec;
+      --dark-grey: #232323;
+      --nav-glass: rgba(20,20,20,0.92);
+      --panel-glass: rgba(28,28,28,0.84);
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: var(--black);
+      color: var(--grey);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    header {
+      background: var(--nav-glass);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 0 1rem 0;
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.09);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1.5px solid #282828;
+    }
+    .logo {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(0 0 5px #ffb34744);
+    }
+    nav {
+      margin-top: 0.3rem;
+      display: flex;
+      gap: 1.2rem;
+    }
+    nav a {
+      color: #c6c6c6;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 1.1rem;
+      border-radius: 22px;
+      border: none;
+      background: none;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+      z-index: 1;
+      overflow: hidden;
+    }
+    nav a:hover:not(.resume-btn) {
+      color: var(--orange);
+      background: rgba(255, 106, 0, 0.10);
+    }
+    .resume-btn {
+      color: var(--grey);
+      font-weight: 800;
+      padding: 0.35rem 1.5rem;
+      border-radius: 28px;
+      border: none;
+      background: var(--orange-grad);
+      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
+      text-shadow: 0 0 3px #ffb34788, 0 0 7px #ff6a00cc;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.2rem;
+      transition: box-shadow 0.2s, background 0.25s, color 0.2s;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
+    }
+    .resume-btn::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      pointer-events: none;
+      box-shadow: 0 0 16px 6px #ff6a0030, 0 0 40px 3px #ffb34750;
+      opacity: 0.45;
+      z-index: -1;
+      transition: opacity 0.25s;
+    }
+    .resume-btn:hover, .resume-btn:focus {
+      color: #232323;
+      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
+      box-shadow: 0 0 20px 5px #ff903344, 0 0 80px 3px #ffb34799;
+      outline: 2.5px solid #ff6a00dd;
+    }
+    .resume-btn:active {
+      background: var(--orange);
+      color: #fff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2.5rem auto 2rem auto;
+      background: var(--panel-glass);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0035;
+      padding: 2.5rem 1.5rem;
+      border: 1.2px solid #232323;
+      backdrop-filter: blur(2px);
+    }
+    h1, h2 {
+      color: var(--orange);
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 8px #ffb34744;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 0.7rem;
+    }
+    .overview {
+      font-size: 1.13rem;
+      color: var(--grey);
+      margin-bottom: 2.2rem;
+      line-height: 1.5;
+    }
+    .projects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+    .project-box {
+      flex: 1 1 330px;
+      max-width: 350px;
+      min-width: 230px;
+      background: linear-gradient(120deg, #232323 65%, #ff6a0025 100%);
+      border-left: 4px solid var(--orange);
+      border-radius: 14px;
+      padding: 1.3rem 1.1rem 1.1rem 1.3rem;
+      box-shadow: 0 2px 16px rgba(255,106,0,0.11), 0 1.5px 6px #ffb34722;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 240px;
+      position: relative;
+    }
+    .project-box:hover {
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
+      border-left: 4px solid #ffb347;
+    }
+    .project-title {
+      color: var(--orange);
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: inherit;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px #ffb34733;
+    }
+    .project-image-placeholder {
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(90deg, #222 40%, #ff6a0022 100%);
+      border-radius: 11px;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #444;
+      font-size: 1.05rem;
+      font-style: italic;
+      border: 1px dashed #ff6a0077;
+    }
+    .project-desc {
+      font-size: 1rem;
+      color: #ddd;
+      flex-grow: 1;
+    }
+    @media (max-width: 1000px) {
+      .projects-grid {
+        gap: 1.2rem;
+      }
+      .container {
+        padding: 1.2rem 0.6rem;
+      }
+      .project-box { padding: 1.1rem 0.8rem 0.9rem 1rem; }
+      h1 { font-size: 1.5rem; }
+    }
+    @media (max-width: 700px) {
+      nav { flex-direction: column; gap: 0.5rem; }
+      .logo { font-size: 1.45rem; }
+      .projects-grid { flex-direction: column; gap: 1.2rem; }
+      .project-box { max-width: 100%; min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="resume.html" class="resume-btn">Resume</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Projects Overview</h1>
+    <div class="overview">
+      Here you'll find a showcase of some of my favorite and most challenging projects—from rapid prototyping for R&D and custom 3D printing, to design automation and innovative fabrication. Each project represents a hands-on solution, creative engineering, and a commitment to quality. (Images and details will be added soon!)
+    </div>
+    <div class="projects-grid">
+      <div class="project-box">
+        <div class="project-title">Large-Scale 3D Printed Wooden House Prototype</div>
+        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-desc">
+          Designed, built, and tested a custom large-format 3D printer for wood composite structures. Demonstrated feasibility of additive construction for bio-based homes.
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-title">Continuous Casting 3D Printing R&D</div>
+        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-desc">
+          Developed a moldless continuous-casting process using 3D printing technology. Enhanced system reliability and performance through iterative mechanical design.
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-title">Agtek 3D Site Modeling Automation</div>
+        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-desc">
+          Built and supported complex 3D earthwork models for construction sites, collaborating remotely with a team and creating instructional content for new users.
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-title">Custom Product & Tool Design</div>
+        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-desc">
+          Delivered CAD designs and working prototypes for custom tools, fixtures, and consumer goods. Experience spans multiple software packages and manufacturing methods.
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-title">Digital Training & Documentation</div>
+        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-desc">
+          Produced engaging instructional videos and written guides for CAD/modeling software and process optimization, supporting clients and teams remotely.
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
+</body>
+</html>
 
