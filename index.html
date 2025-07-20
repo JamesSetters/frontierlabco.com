@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Futuristic Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -72,7 +73,8 @@
       z-index: 1;
       overflow: hidden;
     }
-    nav a:hover:not(.resume-btn) {
+    nav a:hover,
+    nav a:focus {
       color: var(--orange);
       background: #232323;
       box-shadow: 0 0 8px #ff6a0040;
@@ -89,7 +91,8 @@
       box-shadow: 0 2px 10px #ffb34755;
       letter-spacing: 1.2px;
     }
-    .resume-btn:hover, .resume-btn:focus {
+    .resume-btn:hover,
+    .resume-btn:focus {
       background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
       color: #fff;
       box-shadow: 0 0 32px 9px #ff903344;
@@ -154,19 +157,10 @@
       transition: background 0.19s, color 0.15s, box-shadow 0.18s;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
     }
-    .hero .hero-btn:hover {
+    .hero .hero-btn:hover,
+    .hero .hero-btn:focus {
       background: var(--orange);
       color: #fff;
-    }
-    .hero .hero-btn.secondary {
-      background: #232323;
-      color: var(--yellow);
-      border: 1.5px solid var(--yellow);
-    }
-    .hero .hero-btn.secondary:hover {
-      background: var(--yellow);
-      color: #181818;
-      border: 1.5px solid var(--orange);
     }
     section {
       max-width: 1000px;
@@ -289,7 +283,7 @@
     </p>
     <div class="hero-btns">
       <a class="hero-btn" href="projects.html">See Projects</a>
-      <a class="hero-btn secondary" href="services.html">What We Do</a>
+      <a class="hero-btn" href="services.html">What We Do</a>
     </div>
   </div>
 
