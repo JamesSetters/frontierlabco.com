@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontier Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --black: #181818;
+      --grey: #ececec;
+      --dark-grey: #232323;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: var(--black);
+      color: var(--grey);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--dark-grey);
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .logo {
+      color: var(--orange);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    nav {
+      margin-top: 0.75rem;
+    }
+    nav a {
+      color: var(--grey);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--orange);
+    }
+    .hero {
+      background: linear-gradient(120deg, var(--orange) 0%, var(--black) 100%);
+      padding: 4rem 1rem 3rem 1rem;
+      text-align: center;
+    }
+    .hero h1 {
+      color: var(--grey);
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      color: var(--grey);
+      font-size: 1.3rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    section {
+      max-width: 900px;
+      margin: 2.5rem auto 0 auto;
+      padding: 1.5rem;
+      background: var(--dark-grey);
+      border-radius: 14px;
+      box-shadow: 0 4px 18px 0 rgba(0,0,0,0.07);
+    }
+    section h2 {
+      color: var(--orange);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .service {
+      flex: 1 1 260px;
+      background: var(--black);
+      color: var(--grey);
+      border-left: 4px solid var(--orange);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
+    }
+    .service:hover {
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.13);
+    }
+    footer {
+      background: var(--dark-grey);
+      color: var(--grey);
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      border-top: 1px solid #222;
+    }
+    @media (max-width: 700px) {
+      .services {
+        flex-direction: column;
+      }
+      section {
+        padding: 1rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Innovation at the Edge</h1>
+    <p>Prototyping, R&D, and Design Services that help you push boundaries and turn ideas into reality.</p>
+  </div>
+
+  <section>
+    <h2>About Us</h2>
+    <p>
+      Frontier Labs is a creative prototyping and design studio based in North Idaho. We specialize in product design, 3D printing, laser cutting, and R&D for innovators, entrepreneurs, and businesses who want to bring bold ideas to life.
+    </p>
+  </section>
+
+  <section>
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Prototyping</h3>
+        <p>From 3D printing to rapid mock-ups, we help you visualize and test your concepts fast and affordably.</p>
+      </div>
+      <div class="service">
+        <h3>Custom Product Design</h3>
+        <p>Full-service CAD modeling and digital design for consumer goods, tools, and custom projects.</p>
+      </div>
+      <div class="service">
+        <h3>Laser Cutting & Engraving</h3>
+        <p>Precision cutting and engraving on plastics, woods, and more to take your project to the next level.</p>
+      </div>
+      <div class="service">
+        <h3>R&D Solutions</h3>
+        <p>From concept to working prototype, we support inventors, businesses, and startups with custom solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
+</body>
+</html>
