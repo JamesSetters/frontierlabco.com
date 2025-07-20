@@ -4,101 +4,166 @@
   <meta charset="UTF-8">
   <title>Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Futuristic Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --orange: #ff6a00;
+      --orange-glow: #ff6a00cc;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
+      --nav-glass: rgba(20,20,20,0.92);
+      --panel-glass: rgba(28,28,28,0.84);
     }
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      padding: 0;
+      font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
       background: var(--black);
       color: var(--grey);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      box-sizing: border-box;
     }
     header {
-      background: var(--dark-grey);
-      padding: 1.5rem 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+      background: var(--nav-glass);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 0 1rem 0;
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.09);
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      border-bottom: 1.5px solid #282828;
     }
     .logo {
-      color: var(--orange);
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(0 0 5px #ffb34744);
     }
     nav {
-      margin-top: 0.75rem;
+      margin-top: 0.3rem;
       display: flex;
-      gap: 1rem;
+      gap: 1.2rem;
     }
     nav a {
-      color: var(--grey);
+      color: #c6c6c6;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
       text-decoration: none;
-      font-size: 1rem;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-      padding: 0.3rem 1rem;
-      border-radius: 16px;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 1.1rem;
+      border-radius: 22px;
       border: none;
       background: none;
-      cursor: pointer;
-      font-family: inherit;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+      z-index: 1;
+      overflow: hidden;
     }
-    nav a:hover,
-    .resume-btn:hover {
+    nav a:hover:not(.resume-btn) {
       color: var(--orange);
-      background: #242424;
+      background: rgba(255, 106, 0, 0.10);
     }
     .resume-btn {
-      color: var(--orange);
-      border: 2px solid var(--orange);
-      background: none;
-      font-weight: bold;
-      padding: 0.3rem 1.2rem;
-      border-radius: 16px;
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
+      color: var(--grey);
+      font-weight: 800;
+      padding: 0.35rem 1.5rem;
+      border-radius: 28px;
+      border: none;
+      background: var(--orange-grad);
+      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
+      text-shadow: 0 0 3px #ffb34788, 0 0 7px #ff6a00cc;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.2rem;
+      transition: box-shadow 0.2s, background 0.25s, color 0.2s;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
+    }
+    .resume-btn::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      pointer-events: none;
+      box-shadow: 0 0 16px 6px #ff6a0030, 0 0 40px 3px #ffb34750;
+      opacity: 0.45;
+      z-index: -1;
+      transition: opacity 0.25s;
+    }
+    .resume-btn:hover, .resume-btn:focus {
+      color: #232323;
+      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
+      box-shadow: 0 0 20px 5px #ff903344, 0 0 80px 3px #ffb34799;
+      outline: 2.5px solid #ff6a00dd;
+    }
+    .resume-btn:active {
+      background: var(--orange);
+      color: #fff;
     }
     .hero {
-      background: linear-gradient(120deg, var(--orange) 0%, var(--black) 100%);
-      padding: 4rem 1rem 3rem 1rem;
+      background: linear-gradient(120deg, #231a16 20%, #ff6a0020 55%, #181818 100%);
+      padding: 5.2rem 1.2rem 4rem 1.2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .hero h1 {
-      color: var(--grey);
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 1px;
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 16px #ff903344, 0 0 2px #ffb34766;
+      filter: drop-shadow(0 0 18px #ff6a0025);
     }
     .hero p {
       color: var(--grey);
-      font-size: 1.3rem;
-      max-width: 500px;
+      font-size: 1.4rem;
+      max-width: 550px;
       margin: 0 auto;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px #181818a0;
     }
     section {
-      max-width: 900px;
-      margin: 2.5rem auto 0 auto;
-      padding: 1.5rem;
-      background: var(--dark-grey);
-      border-radius: 14px;
-      box-shadow: 0 4px 18px 0 rgba(0,0,0,0.07);
+      max-width: 940px;
+      margin: 2.8rem auto 0 auto;
+      padding: 2rem 1.2rem;
+      background: var(--panel-glass);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0035;
+      backdrop-filter: blur(2px);
+      border: 1.2px solid #232323;
+      transition: background 0.3s;
     }
     section h2 {
       color: var(--orange);
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
+      font-size: 2.1rem;
+      margin-bottom: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-shadow: 0 0 6px #ffb34740;
     }
     .services {
       display: flex;
@@ -108,41 +173,43 @@
     }
     .service {
       flex: 1 1 260px;
-      background: var(--black);
+      background: linear-gradient(120deg, #232323 60%, #ff6a0022 100%);
       color: var(--grey);
       border-left: 4px solid var(--orange);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(255,106,0,0.07), 0 1.5px 6px #ffb34722;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
     .service:hover {
-      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.13);
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
+      border-left: 4px solid #ffb347;
     }
     footer {
-      background: var(--dark-grey);
+      background: var(--nav-glass);
       color: var(--grey);
       text-align: center;
-      padding: 1rem 0;
+      padding: 1.1rem 0 1rem 0;
       margin-top: auto;
-      font-size: 1rem;
+      font-size: 1.02rem;
       letter-spacing: 1px;
-      border-top: 1px solid #222;
+      border-top: 1px solid #282828;
+      box-shadow: 0 -4px 18px 0 #ff6a0011;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      section { padding: 1.2rem 0.4rem; }
+      .services { gap: 1rem; }
+      .service { padding: 1.1rem; }
+      .hero h1 { font-size: 2.1rem; }
     }
     @media (max-width: 700px) {
-      .services {
-        flex-direction: column;
-      }
-      section {
-        padding: 1rem;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      nav {
-        flex-direction: column;
-        gap: 0.4rem;
-      }
+      nav { flex-direction: column; gap: 0.5rem; }
+      .logo { font-size: 1.45rem; }
+      section h2 { font-size: 1.32rem; }
+      .hero { padding: 3.2rem 0.3rem 2rem 0.3rem; }
+      .hero h1 { font-size: 1.45rem; }
     }
   </style>
 </head>
@@ -197,3 +264,4 @@
   </footer>
 </body>
 </html>
+
