@@ -4,248 +4,235 @@
   <meta charset="UTF-8">
   <title>Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Futuristic Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --orange: #ff6a00;
       --yellow: #ffb347;
-      --blue: #3fd0ff;
-      --soft-blue: #0fd0ff22;
-      --light-blue: #a1f2ff44;
-      --orange-glow: #ff6a00cc;
-      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 60%, #ff9033 100%);
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 80%, #ff9033 100%);
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
-      --nav-glass: rgba(24,28,38,0.91);
-      --panel-glass: rgba(38,40,44,0.89);
-      --hero-glass: rgba(30,32,36,0.90);
+      --nav-glass: rgba(24,24,24,0.97);
+      --panel-glass: rgba(28,28,28,0.89);
     }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', 'Segoe UI', 'Roboto', Arial, sans-serif;
-      background: linear-gradient(135deg, #1a1a1f 0%, #282a33 55%, #1d1e22 100%);
+      background: linear-gradient(135deg, #181818 0%, #232323 100%);
       color: var(--grey);
       min-height: 100vh;
       box-sizing: border-box;
     }
     header {
       background: var(--nav-glass);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(8px);
       padding: 1.3rem 0 1.1rem 0;
-      box-shadow: 0 6px 32px 0 #161920bb, 0 2px 14px 0 #ff6a0018;
+      box-shadow: 0 4px 22px 0 #181818bb, 0 2px 14px 0 #ff6a0018;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      border-bottom: 1.5px solid #22292f;
+      border-bottom: 2px solid #232323;
     }
     .logo {
-      background: linear-gradient(90deg, #ffb347 15%, #ff6a00 60%, #3fd0ff 100%);
+      background: var(--orange-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      font-size: 2.7rem;
+      font-size: 2.6rem;
       font-weight: 900;
-      letter-spacing: 2.8px;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      margin-bottom: 0.22rem;
-      filter: drop-shadow(0 0 6px #ffb34745) drop-shadow(0 0 3px #3fd0ff66);
+      margin-bottom: 0.24rem;
+      filter: drop-shadow(0 0 6px #ffb34733);
     }
     nav {
-      margin-top: 0.3rem;
+      margin-top: 0.1rem;
       display: flex;
-      gap: 1.12rem;
+      gap: 1.1rem;
     }
     nav a {
       color: #e3e3e3;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       text-decoration: none;
-      font-size: 1.07rem;
+      font-size: 1.08rem;
       letter-spacing: 1.2px;
-      padding: 0.36rem 1.15rem;
+      padding: 0.33rem 1.09rem;
       border-radius: 20px;
       border: none;
       background: none;
+      transition: color 0.2s, background 0.2s, box-shadow 0.17s;
+      font-weight: 600;
       position: relative;
-      transition: color 0.2s, background 0.2s, box-shadow 0.18s;
       z-index: 1;
       overflow: hidden;
-      font-weight: 600;
     }
     nav a:hover:not(.resume-btn) {
       color: var(--orange);
-      background: var(--soft-blue);
-      box-shadow: 0 0 10px #0fd0ff44;
+      background: #232323;
+      box-shadow: 0 0 8px #ff6a0040;
     }
     .resume-btn {
-      color: #232323;
-      font-weight: 900;
-      padding: 0.36rem 1.6rem;
-      border-radius: 28px;
       background: var(--orange-grad);
-      box-shadow: 0 0 14px 3px var(--orange-glow), 0 0 22px 1px #3fd0ff88;
-      text-shadow: 0 0 2px #ffb34799, 0 0 7px #3fd0ff66;
-      letter-spacing: 1.5px;
-      font-size: 1.12rem;
-      margin-left: 0.24rem;
-      transition: box-shadow 0.22s, background 0.21s, color 0.18s;
-      outline: 1.5px solid #ffb34744;
-      cursor: pointer;
+      color: #181818;
+      font-weight: 800;
+      padding: 0.33rem 1.3rem;
+      border-radius: 22px;
       border: none;
-      position: relative;
-      overflow: hidden;
+      margin-left: 0.3rem;
+      transition: background 0.18s, color 0.15s;
+      box-shadow: 0 2px 10px #ffb34755;
+      letter-spacing: 1.2px;
     }
     .resume-btn:hover, .resume-btn:focus {
+      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
       color: #fff;
-      background: linear-gradient(90deg, #3fd0ff 0%, #ff9033 35%, #ffb347 100%);
-      box-shadow: 0 0 32px 9px #ff903355, 0 0 80px 3px #3fd0ff33;
-      outline: 2px solid #3fd0ff99;
+      box-shadow: 0 0 32px 9px #ff903344;
     }
     .hero {
-      background: linear-gradient(120deg, #232532 38%, #ff6a0027 62%, #232323 100%);
+      background: linear-gradient(120deg, #232323 38%, #ff6a0027 62%, #181818 100%);
       border-radius: 0 0 28px 28px;
-      box-shadow: 0 6px 40px 0 #1d1e22cc, 0 1.2px 6px #3fd0ff12;
-      margin: 0 auto;
-      margin-bottom: 3rem;
-      max-width: 970px;
-      padding: 4.5rem 1.2rem 4.5rem 1.2rem;
+      box-shadow: 0 6px 30px 0 #181818cc, 0 1.2px 6px #ff6a0011;
+      margin: 0 auto 2.2rem auto;
+      max-width: 950px;
+      padding: 4.2rem 1.2rem 3.7rem 1.2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
     .hero h1 {
-      background: linear-gradient(90deg, #ffb347 15%, #ff6a00 55%, #3fd0ff 100%);
+      background: var(--orange-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      font-size: 3.6rem;
+      font-size: 3.1rem;
       font-weight: 900;
-      letter-spacing: 2.6px;
-      margin-bottom: 0.75rem;
+      letter-spacing: 2.2px;
+      margin-bottom: 0.65rem;
       margin-top: 0;
-      text-shadow: 0 0 24px #3fd0ff55, 0 0 12px #ff903355;
-      filter: drop-shadow(0 0 15px #ffb34722);
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
     }
     .hero p {
-      color: #f7f7f7;
-      font-size: 1.33rem;
-      max-width: 620px;
-      margin: 0 auto 1.2rem auto;
-      letter-spacing: 1.2px;
-      text-shadow: 0 0 12px #1b1b2ba0, 0 0 4px #3fd0ff22;
+      color: #fff;
+      font-size: 1.22rem;
+      max-width: 600px;
+      margin: 0 auto 1.1rem auto;
+      letter-spacing: 1.15px;
+      text-shadow: 0 0 8px #232323a0;
       font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
+      font-weight: 500;
+    }
+    .hero .keywords span {
+      font-weight: 700;
+      color: #fff;
     }
     .hero .hero-btns {
-      margin-top: 2.4rem;
+      margin-top: 2.2rem;
       display: flex;
       justify-content: center;
-      gap: 1.4rem;
+      gap: 1.15rem;
       flex-wrap: wrap;
     }
     .hero .hero-btn {
       background: var(--orange-grad);
-      color: #232323;
+      color: #181818;
       font-weight: 700;
-      border-radius: 18px;
-      padding: 0.78rem 2.1rem;
-      font-size: 1.13rem;
-      letter-spacing: 1.1px;
+      border-radius: 16px;
+      padding: 0.68rem 2.1rem;
+      font-size: 1.11rem;
+      letter-spacing: 1.05px;
       border: none;
-      outline: none;
-      box-shadow: 0 0 16px 2px #ff6a0033, 0 0 22px 3px #3fd0ff44;
+      box-shadow: 0 0 12px #ff6a0022;
       cursor: pointer;
-      transition: background 0.19s, color 0.15s, box-shadow 0.19s;
+      transition: background 0.19s, color 0.15s, box-shadow 0.18s;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
     }
-    .hero .hero-btn:hover, .hero .hero-btn:focus {
-      background: linear-gradient(90deg, #3fd0ff 0%, #ff9033 100%);
+    .hero .hero-btn:hover {
+      background: var(--orange);
       color: #fff;
-      box-shadow: 0 0 40px 7px #3fd0ff44;
     }
     .hero .hero-btn.secondary {
-      background: linear-gradient(90deg, #23223f 0%, #3fd0ff 100%);
-      color: #fff;
-      font-weight: 800;
-      border: 1.5px solid #ffb34744;
-      box-shadow: 0 0 22px 4px #3fd0ff66;
+      background: #232323;
+      color: var(--yellow);
+      border: 1.5px solid var(--yellow);
+    }
+    .hero .hero-btn.secondary:hover {
+      background: var(--yellow);
+      color: #181818;
+      border: 1.5px solid var(--orange);
     }
     section {
       max-width: 1000px;
-      margin: 2.6rem auto 0 auto;
-      padding: 2.2rem 1.4rem;
+      margin: 2.5rem auto 0 auto;
+      padding: 2.1rem 1.2rem;
       background: var(--panel-glass);
       border-radius: 18px;
-      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #3fd0ff21;
+      box-shadow: 0 4px 18px 0 #181818dd, 0 2px 14px 0 #ff6a0011;
       border: 1.1px solid #232323;
-      transition: background 0.3s;
       position: relative;
     }
     section h2 {
       color: var(--orange);
-      font-size: 2.1rem;
-      margin-bottom: 1.1rem;
+      font-size: 2.05rem;
+      margin-bottom: 1.05rem;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.15px;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      text-shadow: 0 0 6px #ffb34740;
+      text-shadow: 0 0 5px #ffb34755;
       margin-top: 0;
     }
     .about-content {
-      color: #d6e0f7;
-      font-size: 1.19rem;
-      line-height: 1.6;
-      letter-spacing: 0.2px;
+      color: #f3f3f3;
+      font-size: 1.16rem;
+      line-height: 1.62;
       font-family: 'Montserrat', Arial, sans-serif;
       margin-bottom: 0;
     }
     .features {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.6rem;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
       justify-content: center;
     }
     .feature-card {
-      flex: 1 1 240px;
-      background: linear-gradient(120deg, #232323 68%, #ff6a0016 100%);
-      border-left: 4px solid var(--orange);
-      border-radius: 13px;
-      padding: 1.4rem 1.1rem 1.1rem 1.2rem;
-      box-shadow: 0 2px 14px #3fd0ff18, 0 1.5px 6px #ffb34712;
-      margin-bottom: 1rem;
-      min-width: 210px;
-      max-width: 280px;
+      flex: 1 1 215px;
+      background: #232323;
+      color: var(--grey);
+      border-radius: 12px;
+      padding: 1.18rem 1.08rem 1.03rem 1.13rem;
+      box-shadow: 0 2px 13px #ff6a0010;
+      min-width: 200px;
+      max-width: 255px;
+      border-left: 6px solid var(--orange);
       transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
-      position: relative;
     }
     .feature-card:hover {
-      box-shadow: 0 0 24px 0 #3fd0ff33;
-      border-left: 4px solid #3fd0ff;
-      background: linear-gradient(120deg, #232323 40%, #3fd0ff22 100%);
+      box-shadow: 0 0 16px 0 #ffb34740;
+      border-left: 6px solid var(--yellow);
+      background: #292929;
+      color: var(--yellow);
     }
     .feature-title {
-      color: var(--blue);
-      font-size: 1.11rem;
+      color: var(--orange);
+      font-size: 1.05rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       letter-spacing: 1px;
-      text-shadow: 0 0 5px #3fd0ff22;
+      text-shadow: 0 0 4px #ffb34722;
     }
     .feature-desc {
-      font-size: 1rem;
-      color: #ececec;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 0.99rem;
+      color: inherit;
+      font-family: inherit;
       font-weight: 400;
     }
     footer {
@@ -263,16 +250,16 @@
     /* Responsive */
     @media (max-width: 1100px) {
       section { padding: 1.1rem 0.2rem; }
-      .features { gap: 1.2rem; }
-      .feature-card { padding: 1rem 0.5rem 0.9rem 1rem; }
-      h1 { font-size: 2.1rem; }
-      .hero { padding: 2.2rem 0.4rem 2.6rem 0.4rem; }
+      .features { gap: 1.1rem; }
+      .feature-card { padding: 1rem 0.4rem 0.9rem 0.8rem; }
+      .hero { padding: 2.6rem 0.3rem 2rem 0.3rem; }
     }
     @media (max-width: 700px) {
       nav { flex-direction: column; gap: 0.5rem; }
       .logo { font-size: 1.45rem; }
-      section h2 { font-size: 1.32rem; }
-      .hero h1 { font-size: 2rem; }
+      section h2 { font-size: 1.13rem; }
+      .hero h1 { font-size: 1.4rem; }
+      .feature-card { max-width: 100%; min-width: 0; }
     }
   </style>
 </head>
@@ -292,11 +279,13 @@
   <div class="hero">
     <h1>Innovation at the Edge</h1>
     <p>
-      Designing and prototyping the future. <br>
-      <span style="color: var(--blue); font-weight:700;">3D Printing</span> •
-      <span style="color: var(--orange); font-weight:700;">R&D</span> •
-      <span style="color: var(--yellow); font-weight:700;">Product Design</span> •
-      <span style="color: #baffff;">Extreme Ideas</span>
+      Designing and prototyping the future.<br>
+      <span class="keywords">
+        <span>3D Printing</span> • 
+        <span>R&amp;D</span> • 
+        <span>Product Design</span> • 
+        <span>Extreme Ideas</span>
+      </span>
     </p>
     <div class="hero-btns">
       <a class="hero-btn" href="projects.html">See Projects</a>
@@ -307,8 +296,7 @@
   <section>
     <h2>About Frontier Labs</h2>
     <div class="about-content">
-      <b>Frontier Labs</b> is a North Idaho-based prototyping and design studio blending engineering discipline with extreme creativity. We help you bring your ideas to life—whether you're a startup, entrepreneur, or a business looking to stand out.
-      <br><br>
+      <b>Frontier Labs</b> is a North Idaho-based prototyping and design studio blending engineering discipline with creative, practical solutions. We help you bring your ideas to life—whether you're a startup, entrepreneur, or a business looking to stand out.<br><br>
       Our workflow is hands-on and agile: from CAD to 3D printing, laser cutting, sustainable materials, and research collaborations. You dream it, we design and build it.
     </div>
     <div class="features">
