@@ -13,14 +13,108 @@
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
+      --nav-glass: rgba(20,20,20,0.92);
       --panel-glass: rgba(28,28,28,0.84);
     }
-    body {
-      background: var(--black);
-      color: var(--grey);
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: var(--black);
+      color: var(--grey);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    header {
+      background: var(--nav-glass);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 0 1rem 0;
+      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.09);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1.5px solid #282828;
+    }
+    .logo {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(0 0 5px #ffb34744);
+    }
+    nav {
+      margin-top: 0.3rem;
+      display: flex;
+      gap: 1.2rem;
+    }
+    nav a {
+      color: #c6c6c6;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 1.1rem;
+      border-radius: 22px;
+      border: none;
+      background: none;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+      z-index: 1;
+      overflow: hidden;
+    }
+    nav a:hover:not(.resume-btn) {
+      color: var(--orange);
+      background: rgba(255, 106, 0, 0.10);
+    }
+    .resume-btn {
+      color: var(--grey);
+      font-weight: 800;
+      padding: 0.35rem 1.5rem;
+      border-radius: 28px;
+      border: none;
+      background: var(--orange-grad);
+      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
+      text-shadow: 0 0 3px #ffb34788, 0 0 7px #ff6a00cc;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.2rem;
+      transition: box-shadow 0.2s, background 0.25s, color 0.2s;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
+    }
+    .resume-btn::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      pointer-events: none;
+      box-shadow: 0 0 16px 6px #ff6a0030, 0 0 40px 3px #ffb34750;
+      opacity: 0.45;
+      z-index: -1;
+      transition: opacity 0.25s;
+    }
+    .resume-btn:hover, .resume-btn:focus {
+      color: #232323;
+      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
+      box-shadow: 0 0 20px 5px #ff903344, 0 0 80px 3px #ffb34799;
+      outline: 2.5px solid #ff6a00dd;
+    }
+    .resume-btn:active {
+      background: var(--orange);
+      color: #fff;
     }
     .container {
       max-width: 900px;
@@ -86,29 +180,6 @@
     .service-block li {
       margin-bottom: 0.5rem;
     }
-    .back-btn {
-      display: inline-block;
-      margin-top: 2rem;
-      background: var(--orange-grad);
-      color: #232323;
-      border: none;
-      border-radius: 20px;
-      padding: 0.6rem 1.5rem;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: 1px;
-      text-shadow: 0 0 6px #ffb34744;
-      box-shadow: 0 0 12px 2px var(--orange-glow), 0 0 40px 1px #ffb34744;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.18s, color 0.2s, box-shadow 0.18s;
-    }
-    .back-btn:hover, .back-btn:focus {
-      color: #fff;
-      background: linear-gradient(90deg, #ff9033 0%, #ffb347 100%);
-      box-shadow: 0 0 22px 6px #ff903344, 0 0 80px 3px #ffb34799;
-    }
     @media (max-width: 900px) {
       .container { padding: 1.3rem 0.5rem; }
       .services-list { gap: 1.1rem; }
@@ -122,12 +193,21 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="resume.html" class="resume-btn">Resume</a>
+    </nav>
+  </header>
   <div class="container">
     <h1>Our Services</h1>
     <p>
       At Frontier Labs, we turn ideas into reality with advanced design, prototyping, and fabrication solutions for innovators, entrepreneurs, and businesses.
     </p>
-
     <div class="services-list">
       <div class="service-block">
         <h3>Prototyping</h3>
@@ -175,9 +255,9 @@
         </ul>
       </div>
     </div>
-
-    <a class="back-btn" href="index.html">&#8592; Back to Home</a>
   </div>
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
 </body>
 </html>
-
