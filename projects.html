@@ -164,7 +164,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      min-height: 240px;
+      min-height: 300px;
       position: relative;
     }
     .project-box:hover {
@@ -180,19 +180,15 @@
       letter-spacing: 1px;
       text-shadow: 0 0 5px #ffb34733;
     }
-    .project-image-placeholder {
+    .project-image {
       width: 100%;
-      height: 110px;
-      background: linear-gradient(90deg, #222 40%, #ff6a0022 100%);
+      max-height: 110px;
+      object-fit: cover;
       border-radius: 11px;
       margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #444;
-      font-size: 1.05rem;
-      font-style: italic;
-      border: 1px dashed #ff6a0077;
+      border: 1px solid #222;
+      box-shadow: 0 2px 10px #ff6a0030;
+      background: #232323;
     }
     .project-desc {
       font-size: 1rem;
@@ -232,42 +228,42 @@
   <div class="container">
     <h1>Projects Overview</h1>
     <div class="overview">
-      Here you'll find a showcase of some of my favorite and most challenging projects—from rapid prototyping for R&D and custom 3D printing, to design automation and innovative fabrication. Each project represents a hands-on solution, creative engineering, and a commitment to quality. (Images and details will be added soon!)
+      Here you'll find a showcase of some of my favorite and most challenging projects—from rapid prototyping for R&D and custom 3D printing, to sustainable packaging and creative mechanical design. Each project represents hands-on innovation, creative engineering, and a commitment to quality.
     </div>
     <div class="projects-grid">
       <div class="project-box">
         <div class="project-title">Large-Scale 3D Printed Wooden House Prototype</div>
-        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <img class="project-image" src="images/Large_3D_Printer.jpg" alt="Large-scale 3D Printer Prototype">
         <div class="project-desc">
-          Designed, built, and tested a custom large-format 3D printer for wood composite structures. Demonstrated feasibility of additive construction for bio-based homes.
+          Designed, built, and tested a custom large-format 3D printer for wood composite structures. Demonstrated the feasibility of additive construction for bio-based homes.
         </div>
       </div>
       <div class="project-box">
-        <div class="project-title">Continuous Casting 3D Printing R&D</div>
-        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-title">Continuous Casting Machine R&D</div>
+        <img class="project-image" src="images/Continuous_Casting_Machine.jpg" alt="Continuous Casting Machine">
         <div class="project-desc">
           Developed a moldless continuous-casting process using 3D printing technology. Enhanced system reliability and performance through iterative mechanical design.
         </div>
       </div>
       <div class="project-box">
-        <div class="project-title">Agtek 3D Site Modeling Automation</div>
-        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-title">HP Sustainable Packaging Solution</div>
+        <img class="project-image" src="images/HP_Cover.jpg" alt="HP Sustainable Packaging">
         <div class="project-desc">
-          Built and supported complex 3D earthwork models for construction sites, collaborating remotely with a team and creating instructional content for new users.
+          Engineered a custom packaging cover for HP, focusing on sustainability and material efficiency for next-generation shipping and product protection.
         </div>
       </div>
       <div class="project-box">
-        <div class="project-title">Custom Product & Tool Design</div>
-        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-title">Spinner Template Painting Jig</div>
+        <img class="project-image" src="images/Spinner_Template.jpg" alt="Spinner Template Painting">
         <div class="project-desc">
-          Delivered CAD designs and working prototypes for custom tools, fixtures, and consumer goods. Experience spans multiple software packages and manufacturing methods.
+          Created a precise spinner template and jig for painting and assembling spinner products, boosting accuracy and consistency in production.
         </div>
       </div>
       <div class="project-box">
-        <div class="project-title">Digital Training & Documentation</div>
-        <div class="project-image-placeholder">[Image Coming Soon]</div>
+        <div class="project-title">Fishing Lure Modification</div>
+        <img class="project-image" src="images/Fishing_lures.jpg" alt="Fishing Lure Modifications">
         <div class="project-desc">
-          Produced engaging instructional videos and written guides for CAD/modeling software and process optimization, supporting clients and teams remotely.
+          Designed, prototyped, and modified fishing lures for improved action, durability, and performance using advanced 3D modeling and testing.
         </div>
       </div>
     </div>
