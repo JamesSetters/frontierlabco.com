@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Frontier Labs</title>
+  <title>Resume - James Setters | Frontier Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Futuristic Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
@@ -117,99 +117,80 @@
       background: var(--orange);
       color: #fff;
     }
-    .hero {
-      background: linear-gradient(120deg, #231a16 20%, #ff6a0020 55%, #181818 100%);
-      padding: 5.2rem 1.2rem 4rem 1.2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero h1 {
-      background: var(--orange-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      font-size: 3.2rem;
-      font-weight: 900;
-      letter-spacing: 2.5px;
-      margin-bottom: 0.6rem;
-      text-shadow: 0 0 16px #ff903344, 0 0 2px #ffb34766;
-      filter: drop-shadow(0 0 18px #ff6a0025);
-    }
-    .hero p {
-      color: var(--grey);
-      font-size: 1.4rem;
-      max-width: 550px;
-      margin: 0 auto;
-      letter-spacing: 1px;
-      text-shadow: 0 0 12px #181818a0;
-    }
-    section {
-      max-width: 940px;
-      margin: 2.8rem auto 0 auto;
-      padding: 2rem 1.2rem;
+    .container {
+      max-width: 900px;
+      margin: 2.5rem auto 2rem auto;
       background: var(--panel-glass);
       border-radius: 18px;
       box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0035;
-      backdrop-filter: blur(2px);
+      padding: 2.5rem 1.5rem;
       border: 1.2px solid #232323;
-      transition: background 0.3s;
+      backdrop-filter: blur(2px);
     }
-    section h2 {
+    h1, h2, h3 {
       color: var(--orange);
-      font-size: 2.1rem;
-      margin-bottom: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 1.2px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 1px;
       font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-      text-shadow: 0 0 6px #ffb34740;
+      text-shadow: 0 0 8px #ffb34744;
     }
-    .services {
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 0.2rem;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      margin-top: 2.1rem;
+    }
+    .contact {
+      color: var(--grey);
+      font-size: 1.08rem;
+      margin-bottom: 1.6rem;
+    }
+    .section {
+      margin-bottom: 1.5rem;
+    }
+    .job-title {
+      font-weight: bold;
+      color: var(--orange);
+    }
+    .job-details {
+      font-size: 1rem;
+      color: #bbbbbb;
+    }
+    .skills, .certs {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.5rem;
+      gap: 0.5rem 1.5rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
     }
-    .service {
-      flex: 1 1 260px;
-      background: linear-gradient(120deg, #232323 60%, #ff6a0022 100%);
-      color: var(--grey);
-      border-left: 4px solid var(--orange);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 12px rgba(255,106,0,0.07), 0 1.5px 6px #ffb34722;
-      transition: box-shadow 0.2s, border-color 0.2s;
+    .skills span, .certs span {
+      background: var(--black);
+      border: 1px solid var(--orange);
+      border-radius: 16px;
+      padding: 0.25rem 0.9rem;
+      color: var(--orange);
+      font-family: inherit;
     }
-    .service:hover {
-      box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
-      border-left: 4px solid #ffb347;
+    a {
+      color: var(--orange);
+      text-decoration: underline;
+      word-break: break-all;
     }
-    footer {
-      background: var(--nav-glass);
-      color: var(--grey);
-      text-align: center;
-      padding: 1.1rem 0 1rem 0;
-      margin-top: auto;
-      font-size: 1.02rem;
-      letter-spacing: 1px;
-      border-top: 1px solid #282828;
-      box-shadow: 0 -4px 18px 0 #ff6a0011;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    .group, .publication {
+      margin-bottom: 1.2rem;
     }
-    /* Responsive */
-    @media (max-width: 900px) {
-      section { padding: 1.2rem 0.4rem; }
-      .services { gap: 1rem; }
-      .service { padding: 1.1rem; }
-      .hero h1 { font-size: 2.1rem; }
-    }
-    @media (max-width: 700px) {
-      nav { flex-direction: column; gap: 0.5rem; }
-      .logo { font-size: 1.45rem; }
-      section h2 { font-size: 1.32rem; }
-      .hero { padding: 3.2rem 0.3rem 2rem 0.3rem; }
-      .hero h1 { font-size: 1.45rem; }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem 0.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -217,48 +198,123 @@
   <header>
     <div class="logo">Frontier Labs</div>
     <nav>
-      <a href="#">Home</a>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
       <a href="#">About</a>
-      <a href="#">Services</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
   </header>
-
-  <div class="hero">
-    <h1>Innovation at the Edge</h1>
-    <p>Prototyping, R&D, and Design Services that help you push boundaries and turn ideas into reality.</p>
-  </div>
-
-  <section>
-    <h2>About Us</h2>
-    <p>
-      Frontier Labs is a creative prototyping and design studio based in North Idaho. We specialize in product design, 3D printing, laser cutting, and R&D for innovators, entrepreneurs, and businesses who want to bring bold ideas to life.
-    </p>
-  </section>
-
-  <section>
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Prototyping</h3>
-        <p>From 3D printing to rapid mock-ups, we help you visualize and test your concepts fast and affordably.</p>
+  <div class="container">
+    <h1>James Setters</h1>
+    <div class="contact">
+      <div>Spirit Lake, ID 83869</div>
+      <div>Phone: <a href="tel:+12089200565">+1 (208) 920-0565</a></div>
+      <div>Email: <a href="mailto:jameslsetters@gmail.com">jameslsetters@gmail.com</a></div>
+      <div>Willing to relocate to Coeur d'Alene, ID</div>
+    </div>
+    <div class="section">
+      <h2>Summary</h2>
+      <p>
+        Versatile mechanical engineering professional with 3 years of experience in research and development, specializing in 3D modeling and mechanical design. Proven ability to implement design changes and troubleshoot complex systems, demonstrated through successful projects involving large-scale 3D printing. Skilled in SolidWorks, Fusion 360, and Agtek 4D, with a strong foundation in lean manufacturing principles. Committed to continuous improvement and innovation in engineering solutions.
+      </p>
+    </div>
+    <div class="section">
+      <h2>Work Experience</h2>
+      <div>
+        <span class="job-title">Direct Support Professional (DSP)</span> <span class="job-details">— Community Connections, Inc., Post Falls, ID (May 2025 – Present)</span>
+        <ul>
+          <li>Assist people with developmental disabilities in their daily tasks.</li>
+        </ul>
       </div>
-      <div class="service">
-        <h3>Custom Product Design</h3>
-        <p>Full-service CAD modeling and digital design for consumer goods, tools, and custom projects.</p>
+      <div>
+        <span class="job-title">Research Lab Assistant</span> <span class="job-details">— University of Idaho, Moscow, ID (Aug 2024 – May 2025)</span>
+        <ul>
+          <li>Worked on a continuous casting project using a 3D printer to cast solid rods without a mold.</li>
+          <li>Implemented design changes to improve system consistency.</li>
+          <li>Handled extensive troubleshooting and iterative design.</li>
+        </ul>
       </div>
-      <div class="service">
-        <h3>Laser Cutting & Engraving</h3>
-        <p>Precision cutting and engraving on plastics, woods, and more to take your project to the next level.</p>
+      <div>
+        <span class="job-title">Internship</span> <span class="job-details">— RDO Equipment Co., Billings, MT (May 2021 – May 2025)</span>
+        <ul>
+          <li>Used Agtek to 3D model dirt work for construction sites.</li>
+          <li>Worked remotely while supporting a team of 3D modelers.</li>
+          <li>Created instructional videos for 3D modeling software.</li>
+        </ul>
       </div>
-      <div class="service">
-        <h3>R&D Solutions</h3>
-        <p>From concept to working prototype, we support inventors, businesses, and startups with custom solutions.</p>
+      <div>
+        <span class="job-title">Clerical Assistant/Tutor</span> <span class="job-details">— University of Idaho, Moscow, ID (Aug 2024 – Dec 2024)</span>
+        <ul>
+          <li>Graded papers in a fluid dynamics class.</li>
+          <li>Corrected student mistakes and performed data entry.</li>
+        </ul>
+      </div>
+      <div>
+        <span class="job-title">Research Lab Assistant</span> <span class="job-details">— University of Idaho, Moscow, ID (May 2023 – Aug 2023)</span>
+        <ul>
+          <li>Designed and built a large-scale 3D printer for 3D printed wooden house feasibility testing.</li>
+          <li>Designed systems with SolidWorks and presented to the team weekly.</li>
+          <li>Manufactured and implemented custom designs.</li>
+        </ul>
       </div>
     </div>
-  </section>
-
+    <div class="section">
+      <h2>Education</h2>
+      <div><b>Bachelor of Mechanical Engineering</b> — University of Idaho, Moscow, ID (Aug 2021 – May 2025)</div>
+      <div><b>Minors:</b> Mathematics, Physics, Pre-Health Professional Studies</div>
+    </div>
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span>Drafting</span>
+        <span>Lean Manufacturing</span>
+        <span>Fusion 360</span>
+        <span>Mechanical Design</span>
+        <span>Research & Development</span>
+        <span>Product Development</span>
+        <span>MATLAB</span>
+        <span>Mechanical Engineering</span>
+        <span>Manufacturing</span>
+        <span>SolidWorks</span>
+        <span>CAD</span>
+        <span>Continuous Improvement</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Certifications & Licenses</h2>
+      <div class="certs">
+        <span>AED Certification (June 2025–June 2027)</span>
+        <span>First Aid Certification (June 2025–June 2027)</span>
+        <span>CPR Certification (June 2025–June 2027)</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Groups</h2>
+      <div class="group">
+        <b>PrinTimber</b> (Feb 2023 – May 2025)  
+        <div>
+          “PrinTimber is a project and a material. We are developing the science necessary to use 100% bio-based materials for the Advanced Housing Manufacturing Economy of the Future. We take minimally processed natural material waste products and turn them into 3D printed houses. Our process sequesters carbon, uses local materials, and results in a printed structure with a familiar wood feel – because it is wood. The PrinTimber Lab is on the cutting edge of printing with bio-based thermoset composites.”
+        </div>
+        <div>
+          <a href="https://printimber.org" target="_blank">printimber.org</a>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Publications</h2>
+      <div class="publication">
+        <b>Influence of metakaolin and acetic acid on sodium silicate-based inorganic bonded wood composites for additive manufacturing</b><br>
+        <a href="https://www.sciencedirect.com/science/article/pii/S2590048X25000536" target="_blank">
+          https://www.sciencedirect.com/science/article/pii/S2590048X25000536
+        </a><br>
+        <span>June 2025</span>
+        <p style="font-size: 0.98rem; color: #bbbbbb; margin-top: 0.5rem;">
+          Aluminosilicates such as geopolymers show promise as formaldehyde-free binders for inorganic-bonded wood composites. Understanding the curing behavior, mechanical properties, and wet performance of these composites is necessary to advance inorganic-bonded wood composites for construction additive manufacturing (AM) applications. This study examined the effects of metakaolin content, curing temperature, and acetic acid treatment on the dry and wet properties of wood-sodium silicate composites for AM. Wood-sodium silicate-metakaolin composite (WSSMC) formulations with 50 wt% wood fiber and 50 wt% binder were prepared with varying sodium silicate to metakaolin content (0, 5, 10 wt%). Dynamic rheology demonstrated suitable shear-thinning behavior and extrudability for formulations containing up to 10 wt% metakaolin. These composites displayed glass transition temperatures ranging between 181 and 201 °C (peak of Eʹʹ), and true densities increased with increasing curing temperature. Cold-pressed and extruded composites were subjected to acetic acid treatment and subsequent water soaking. Composites after acid treatment displayed changes to aluminosilicate bonds identified using Fourier transform infrared spectroscopy. Acid treated composites exhibited higher flexural (3–10 MPa) and compressive strengths (9–23 MPa) and lower weight gain and thickness swelling after water soaking compared to untreated composites. Flexural and compressive strengths were highest for dry, untreated composites (8–13 MPa and 12–34 MPa, respectively), especially when cured at lower temperatures (60 °C and 105 °C). This work provides insight into the use of acetic acid to improve the wet performance of inorganic bonded wood composites and demonstrates the potential for using metakaolin in inorganic bonded wood composites for novel wood composite additive manufacturing for construction.
+        </p>
+      </div>
+    </div>
+  </div>
   <footer>
     &copy; 2025 Frontier Labs. All rights reserved.
   </footer>
