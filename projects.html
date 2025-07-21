@@ -13,29 +13,29 @@
       --black: #181818;
       --grey: #ececec;
       --dark-grey: #232323;
-      --nav-glass: rgba(24,24,24,0.97);
-      --panel-glass: rgba(28,28,28,0.89);
+      --nav-glass: rgba(24,28,38,0.91);
+      --panel-glass: rgba(38,40,44,0.89);
     }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #181818 0%, #232323 100%);
+      background: linear-gradient(135deg, #1a1a1f 0%, #282a33 55%, #1d1e22 100%);
       color: var(--grey);
       min-height: 100vh;
       box-sizing: border-box;
     }
     header {
       background: var(--nav-glass);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
       padding: 1.3rem 0 1.1rem 0;
-      box-shadow: 0 4px 22px 0 #181818bb, 0 2px 14px 0 #ff6a0018;
+      box-shadow: 0 6px 32px 0 #161920bb, 0 2px 14px 0 #ff6a0018;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      border-bottom: 2px solid #232323;
+      border-bottom: 1.5px solid #22292f;
     }
     .logo {
       background: var(--orange-grad);
@@ -43,58 +43,63 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       font-weight: 900;
-      letter-spacing: 2.4px;
+      letter-spacing: 2.8px;
       text-transform: uppercase;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      margin-bottom: 0.24rem;
-      filter: drop-shadow(0 0 6px #ffb34733);
+      margin-bottom: 0.22rem;
+      filter: drop-shadow(0 0 6px #ffb34745);
     }
     nav {
-      margin-top: 0.1rem;
+      margin-top: 0.3rem;
       display: flex;
-      gap: 1.1rem;
+      gap: 1.12rem;
     }
     nav a {
       color: #e3e3e3;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       text-decoration: none;
-      font-size: 1.08rem;
+      font-size: 1.07rem;
       letter-spacing: 1.2px;
-      padding: 0.33rem 1.09rem;
+      padding: 0.36rem 1.15rem;
       border-radius: 20px;
       border: none;
       background: none;
-      transition: color 0.2s, background 0.2s, box-shadow 0.17s;
-      font-weight: 600;
       position: relative;
+      transition: color 0.2s, background 0.2s, box-shadow 0.18s;
       z-index: 1;
       overflow: hidden;
+      font-weight: 600;
     }
-    nav a:hover,
-    nav a:focus {
+    nav a:hover:not(.resume-btn) {
       color: var(--orange);
       background: #232323;
-      box-shadow: 0 0 8px #ff6a0040;
+      box-shadow: 0 0 10px #ff6a0044;
     }
     .resume-btn {
+      color: #232323;
+      font-weight: 900;
+      padding: 0.36rem 1.6rem;
+      border-radius: 28px;
       background: var(--orange-grad);
-      color: #181818;
-      font-weight: 800;
-      padding: 0.33rem 1.3rem;
-      border-radius: 22px;
+      box-shadow: 0 0 14px 3px var(--orange), 0 0 22px 1px #ffb34788;
+      text-shadow: 0 0 2px #ffb34799;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.24rem;
+      transition: box-shadow 0.22s, background 0.21s, color 0.18s;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
       border: none;
-      margin-left: 0.3rem;
-      transition: background 0.18s, color 0.15s;
-      box-shadow: 0 2px 10px #ffb34755;
-      letter-spacing: 1.2px;
+      position: relative;
+      overflow: hidden;
     }
-    .resume-btn:hover,
-    .resume-btn:focus {
-      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
+    .resume-btn:hover, .resume-btn:focus {
       color: #fff;
-      box-shadow: 0 0 32px 9px #ff903344;
+      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
+      box-shadow: 0 0 32px 9px #ff903355;
+      outline: 2px solid #ffb34799;
     }
     .container {
       max-width: 1100px;
@@ -137,7 +142,7 @@
       border-radius: 14px;
       padding: 1.3rem 1.1rem 1.1rem 1.3rem;
       box-shadow: 0 2px 16px rgba(255,106,0,0.11), 0 1.5px 6px #ffb34722;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
       margin-bottom: 1rem;
       display: flex;
       flex-direction: column;
@@ -148,17 +153,17 @@
     .project-box:hover {
       box-shadow: 0 4px 24px 0 rgba(255,106,0,0.23);
       border-left: 4px solid #ffb347;
+      background: linear-gradient(120deg, #232323 40%, #ffb34722 100%);
     }
     .project-title {
       color: var(--orange);
       font-size: 1.12rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
-      font-family: inherit;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
       letter-spacing: 1px;
       text-shadow: 0 0 5px #ffb34733;
     }
-    /* SQUARE image box! */
     .project-image-wrapper {
       width: 100%;
       aspect-ratio: 1/1;
@@ -264,7 +269,8 @@
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="projects.html">Projects</a>
-      <a href="#">About</a>
+      <a href="code.html">Code</a>
+      <a href="shop.html">Shop</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
@@ -367,4 +373,3 @@
   </script>
 </body>
 </html>
-
