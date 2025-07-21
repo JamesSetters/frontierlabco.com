@@ -107,8 +107,7 @@
       background: linear-gradient(120deg, #232532 38%, #ff6a0027 62%, #232323 100%);
       border-radius: 0 0 28px 28px;
       box-shadow: 0 6px 40px 0 #1d1e22cc, 0 1.2px 6px #ff6a0012;
-      margin: 0 auto;
-      margin-bottom: 3rem;
+      margin: 0 auto 3rem auto;
       max-width: 970px;
       padding: 3.5rem 1.2rem 2.8rem 1.2rem;
       text-align: center;
@@ -141,18 +140,19 @@
       font-family: 'Montserrat', Arial, sans-serif;
       font-weight: 400;
     }
-    section {
-      max-width: 1000px;
-      margin: 2.6rem auto 0 auto;
-      padding: 2.2rem 1.4rem;
+    .pong-section {
+      max-width: 520px;
+      margin: 2.4rem auto;
+      padding: 2rem 1.3rem 2.7rem 1.3rem;
       background: var(--panel-glass);
       border-radius: 18px;
-      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0021;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0033;
       border: 1.1px solid #232323;
-      transition: background 0.3s;
+      text-align: center;
       position: relative;
+      transition: background 0.3s;
     }
-    section h2 {
+    .pong-section h2 {
       color: var(--orange);
       font-size: 2.1rem;
       margin-bottom: 1.1rem;
@@ -162,70 +162,40 @@
       text-shadow: 0 0 6px #ffb34740;
       margin-top: 0;
     }
-    .code-projects {
+    .pong-instructions {
+      font-size: 1.07rem;
+      color: #ffb347;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.7px;
+      text-shadow: 0 0 7px #232323, 0 0 6px #ff6a0011;
+    }
+    .pong-canvas-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.6rem;
       justify-content: center;
-    }
-    .code-card {
-      flex: 1 1 260px;
-      background: linear-gradient(120deg, #232323 68%, #ff6a0016 100%);
-      border-left: 4px solid var(--orange);
+      align-items: center;
+      margin: 0 auto;
+      background: #232323;
       border-radius: 13px;
-      padding: 1.3rem 1.1rem 1.1rem 1.2rem;
-      box-shadow: 0 2px 14px #ffb34718, 0 1.5px 6px #ff6a0012;
-      margin-bottom: 1rem;
-      min-width: 220px;
-      max-width: 330px;
-      transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding: 1.2rem;
+      box-shadow: 0 0 20px #ffb34722;
+      max-width: 420px;
     }
-    .code-card:hover {
-      box-shadow: 0 0 24px 0 #ffb34733;
-      border-left: 4px solid #ffb347;
-      background: linear-gradient(120deg, #232323 40%, #ffb34722 100%);
-    }
-    .code-title {
-      color: var(--orange);
-      font-size: 1.11rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      letter-spacing: 1px;
-      text-shadow: 0 0 5px #ffb34722;
-    }
-    .code-desc {
-      font-size: 1rem;
-      color: #ececec;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-    .code-link {
-      align-self: flex-start;
-      background: var(--orange-grad);
-      color: #232323;
-      font-weight: 700;
-      border-radius: 16px;
-      padding: 0.44rem 1.3rem;
-      font-size: 1.01rem;
+    canvas#pong {
+      display: block;
+      margin: 0 auto;
+      border-radius: 9px;
+      background: linear-gradient(120deg, #232323 90%, #ff6a0011 100%);
+      box-shadow: 0 0 18px #ff6a0035;
+      outline: 1.5px solid #ff6a00cc;
       border: none;
-      outline: none;
-      box-shadow: 0 0 10px 1px #ff6a0033;
-      cursor: pointer;
-      transition: background 0.17s, color 0.15s, box-shadow 0.18s;
-      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
-      text-decoration: none;
     }
-    .code-link:hover, .code-link:focus {
-      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
-      color: #fff;
-      box-shadow: 0 0 24px 6px #ffb34744;
+    .pong-mobile {
+      font-size: 0.97rem;
+      color: #ececec;
+      margin: 1.1rem auto 0 auto;
+      font-family: 'Montserrat', Arial, sans-serif;
+      opacity: 0.75;
     }
     footer {
       background: var(--nav-glass);
@@ -239,21 +209,11 @@
       box-shadow: 0 -4px 18px 0 #ff6a0011;
       font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
     }
-    /* Responsive */
-    @media (max-width: 1100px) {
-      section { padding: 1.1rem 0.2rem; }
-      .code-projects { gap: 1.2rem; }
-      .code-card { padding: 1rem 0.5rem 0.9rem 1rem; }
-      h1 { font-size: 2.1rem; }
-      .hero { padding: 2.2rem 0.4rem 2.6rem 0.4rem; }
-    }
     @media (max-width: 700px) {
       nav { flex-direction: column; gap: 0.5rem; }
       .logo { font-size: 1.45rem; }
-      section h2 { font-size: 1.32rem; }
-      .hero h1 { font-size: 2rem; }
-      .code-projects { flex-direction: column; align-items: center; }
-      .code-card { min-width: unset; max-width: unset; width: 100%; }
+      .pong-section { padding: 1.1rem 0.3rem 1.7rem 0.3rem; }
+      .pong-canvas-wrapper { padding: 0.5rem; }
     }
   </style>
 </head>
@@ -272,47 +232,199 @@
   </header>
 
   <div class="hero">
-    <h1>Open Source, Automations & Tools</h1>
+    <h1>Playable Pong • Frontier Labs Code</h1>
     <p>
-      Browse code projects, automations, and scripts designed, written, and shared by Frontier Labs.<br>
-      <span style="color: #fff; font-weight:700;">CAD tools</span> •
-      <span style="color: #fff; font-weight:700;">3D Printer scripts</span> •
-      <span style="color: #fff; font-weight:700;">Automation</span> •
-      <span style="color: #fff;">Rapid Prototyping</span>
+      Try out a fully playable Pong game, made just for this site.<br>
+      <span style="color: #fff; font-weight:700;">Arrow keys</span> to move (or touch controls on mobile).<br>
+      Coded in pure JS &lt;canvas&gt;, styled for the future.
     </p>
   </div>
 
-  <section>
-    <h2>Featured Code Projects</h2>
-    <div class="code-projects">
-      <div class="code-card">
-        <div class="code-title">3D Printer G-Code Optimizer</div>
-        <div class="code-desc">
-          A Python script that cleans and optimizes G-code for Creality and Bambu Labs printers. Features path smoothing, retraction tuning, and auto-bed leveling macros.
-        </div>
-        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/GCODE-OPTIMIZER" target="_blank">View on GitHub</a>
-      </div>
-      <div class="code-card">
-        <div class="code-title">Automated Lure Painter</div>
-        <div class="code-desc">
-          Arduino and Python code for an automated spinner and lure painting machine. Includes live serial control and template management.
-        </div>
-        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/LURE-PAINTER" target="_blank">View on GitHub</a>
-      </div>
-      <div class="code-card">
-        <div class="code-title">Rapid Product Configurator</div>
-        <div class="code-desc">
-          A browser-based tool for customizing product dimensions and previewing in 3D before printing or CNC fabrication.
-        </div>
-        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/PRODUCT-CONFIGURATOR" target="_blank">View on GitHub</a>
-      </div>
-      <!-- Add more code cards as needed -->
+  <section class="pong-section">
+    <h2>Pong Game</h2>
+    <div class="pong-instructions">
+      Player vs AI • First to 7 wins!<br>
+      <b>Move:</b> Up/Down arrows (desktop) <span style="font-weight:400;">or drag/tap paddle (mobile)</span>
     </div>
+    <div class="pong-canvas-wrapper">
+      <canvas id="pong" width="400" height="300"></canvas>
+    </div>
+    <div class="pong-mobile">Tip: On mobile, drag your paddle up or down.</div>
   </section>
 
   <footer>
     &copy; 2025 Frontier Labs. All rights reserved.
   </footer>
+
+  <script>
+    // --- PONG GAME LOGIC ---
+    const canvas = document.getElementById("pong");
+    const ctx = canvas.getContext("2d");
+
+    // Game variables
+    const paddleWidth = 11, paddleHeight = 64, ballSize = 13;
+    let playerY = canvas.height / 2 - paddleHeight / 2;
+    let aiY = playerY, ballX = canvas.width/2 - ballSize/2, ballY = canvas.height/2 - ballSize/2;
+    let ballSpeedX = Math.random() > 0.5 ? 3.3 : -3.3, ballSpeedY = 2.7;
+    let playerScore = 0, aiScore = 0;
+    let upPressed = false, downPressed = false;
+    let isGameOver = false;
+
+    function resetBall(scoredLeft) {
+      ballX = canvas.width / 2 - ballSize / 2;
+      ballY = Math.random() * (canvas.height - ballSize);
+      ballSpeedX = scoredLeft ? 3.3 : -3.3;
+      ballSpeedY = (Math.random() > 0.5 ? 2.7 : -2.7) * (Math.random() + 0.7);
+    }
+
+    function drawRect(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, 2*Math.PI);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function drawText(text, x, y, size = 32, color = "var(--orange)", font = "'Orbitron', Arial") {
+      ctx.font = `bold ${size}px ${font}`;
+      ctx.fillStyle = color;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      ctx.fillText(text, x, y);
+    }
+
+    function draw() {
+      // Panel BG glass
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      drawRect(0, 0, canvas.width, canvas.height, "#202226ee");
+
+      // Net
+      for(let i=10;i<canvas.height;i+=28){
+        drawRect(canvas.width/2-2, i, 4, 16, "rgba(255,180,71,0.22)");
+      }
+
+      // Paddles
+      drawRect(11, playerY, paddleWidth, paddleHeight, "var(--orange)");
+      drawRect(canvas.width-22, aiY, paddleWidth, paddleHeight, "#ececec");
+
+      // Ball
+      drawCircle(ballX+ballSize/2, ballY+ballSize/2, ballSize/2, "#ffb347");
+
+      // Scores
+      drawText(playerScore, canvas.width/2-40, 8, 32, "var(--orange)");
+      drawText(aiScore, canvas.width/2+40, 8, 32, "#ececec");
+
+      // Game Over
+      if (isGameOver) {
+        drawRect(0,0,canvas.width,canvas.height,"#181818cc");
+        drawText(playerScore > aiScore ? "You Win!" : "AI Wins!", canvas.width/2, canvas.height/2-32, 34, "#ffb347");
+        drawText("Press Space to Play Again", canvas.width/2, canvas.height/2+4, 19, "#ececec");
+      }
+    }
+
+    function update() {
+      if (isGameOver) return;
+
+      // Player movement
+      if (upPressed) playerY -= 6.5;
+      if (downPressed) playerY += 6.5;
+      // Clamp
+      playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+
+      // AI: follow ball with a bit of delay
+      let aiCenter = aiY + paddleHeight/2;
+      if (ballY+ballSize/2 < aiCenter - 8) aiY -= 4.2 + Math.random();
+      else if (ballY+ballSize/2 > aiCenter + 8) aiY += 4.2 + Math.random();
+      aiY = Math.max(0, Math.min(canvas.height - paddleHeight, aiY));
+
+      // Move ball
+      ballX += ballSpeedX;
+      ballY += ballSpeedY;
+
+      // Top/bottom wall
+      if (ballY < 0) { ballY = 0; ballSpeedY *= -1; }
+      if (ballY > canvas.height - ballSize) { ballY = canvas.height - ballSize; ballSpeedY *= -1; }
+
+      // Player paddle
+      if (ballX < 11 + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight) {
+        ballX = 11 + paddleWidth;
+        ballSpeedX *= -1.11; // bounce, speed up
+        let delta = (ballY + ballSize/2 - (playerY + paddleHeight/2))/32;
+        ballSpeedY += delta;
+      }
+
+      // AI paddle
+      if (ballX+ballSize > canvas.width-22 && ballY + ballSize > aiY && ballY < aiY + paddleHeight) {
+        ballX = canvas.width-22-ballSize;
+        ballSpeedX *= -1.08;
+        let delta = (ballY + ballSize/2 - (aiY + paddleHeight/2))/30;
+        ballSpeedY += delta;
+      }
+
+      // Score
+      if (ballX < 0) {
+        aiScore += 1;
+        if (aiScore >= 7) isGameOver = true;
+        resetBall(true);
+      }
+      if (ballX > canvas.width - ballSize) {
+        playerScore += 1;
+        if (playerScore >= 7) isGameOver = true;
+        resetBall(false);
+      }
+    }
+
+    function gameLoop() {
+      update();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Input
+    window.addEventListener("keydown", e => {
+      if (e.key === "ArrowUp") upPressed = true;
+      if (e.key === "ArrowDown") downPressed = true;
+      if (e.key === " " && isGameOver) {
+        playerScore = 0; aiScore = 0; isGameOver = false; resetBall(Math.random() > 0.5);
+      }
+    });
+    window.addEventListener("keyup", e => {
+      if (e.key === "ArrowUp") upPressed = false;
+      if (e.key === "ArrowDown") downPressed = false;
+    });
+
+    // Touch/mouse drag for mobile
+    let dragging = false, dragOffset = 0;
+    canvas.addEventListener("pointerdown", e => {
+      let rect = canvas.getBoundingClientRect();
+      let y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+      if (y > playerY && y < playerY + paddleHeight) {
+        dragging = true;
+        dragOffset = y - playerY;
+      }
+    });
+    window.addEventListener("pointermove", e => {
+      if (dragging) {
+        let rect = canvas.getBoundingClientRect();
+        let y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+        playerY = y - dragOffset;
+        playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+      }
+    });
+    window.addEventListener("pointerup", () => dragging = false);
+
+    // Mobile: stop scrolling when touching canvas
+    canvas.addEventListener("touchstart", e => e.preventDefault(), { passive:false });
+    canvas.addEventListener("touchmove", e => e.preventDefault(), { passive:false });
+    canvas.addEventListener("touchend", e => e.preventDefault(), { passive:false });
+
+    // Start game
+    resetBall(Math.random() > 0.5);
+    gameLoop();
+  </script>
 </body>
 </html>
-
