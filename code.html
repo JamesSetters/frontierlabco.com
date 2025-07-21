@@ -217,10 +217,10 @@
   </header>
 
   <div class="hero">
-    <h1>Pong Game (Playable!)</h1>
+    <h1>Pong Game (Unbeatable AI)</h1>
     <p>
-      Classic Pong — but in Frontier Labs style.<br>
-      <b>W</b>/<b>S</b> for Left Paddle, <b>↑</b>/<b>↓</b> for Right Paddle.<br>
+      Classic Pong — but with a robotic right paddle.<br>
+      <b>W</b>/<b>S</b> for Left Paddle. Right paddle: AI.<br>
       <span style="color:#ffb347;font-weight:700;">First to 7 wins!</span>
     </p>
   </div>
@@ -229,8 +229,8 @@
     <div class="pong-title">Play Pong</div>
     <div class="pong-controls">
       <b>Left Paddle:</b> W / S &nbsp; | &nbsp;
-      <b>Right Paddle:</b> &#8593; / &#8595; (arrow keys)<br>
-      <span style="font-size:0.95rem; color:#ffb347">Arrow keys won't scroll the page while playing</span>
+      <b>Right Paddle:</b> Unbeatable AI<br>
+      <span style="font-size:0.95rem; color:#ffb347">Try to score if you can!</span>
     </div>
     <canvas id="pong" width="600" height="400"></canvas>
     <div class="pong-score" id="pong-score"></div>
@@ -256,14 +256,17 @@
     const COLOR_TEXT = "#ececec";
 
     // Game vars
-    const PADDLE_WIDTH = 12, PADDLE_HEIGHT = 74;
+    const PADDLE_WIDTH = 12;
+    const PADDLE_HEIGHT = 74;
+    const AI_PADDLE_HEIGHT = PADDLE_HEIGHT / 2;
     const PADDLE_SPEED = 6;
+    const AI_SPEED = 14; // AI paddle jumps directly to ball, can be > PADDLE_SPEED
     const BALL_SIZE = 18;
-    const BALL_SPEED = 3.3; // 50% slower than classic pong (was ~6.6)
+    const BALL_SPEED = 3.3; // 50% slower than classic pong
     let leftScore = 0, rightScore = 0, maxScore = 7;
 
     let paddleLeft = { x: 18, y: (canvas.height-PADDLE_HEIGHT)/2, vy: 0 };
-    let paddleRight = { x: canvas.width-18-PADDLE_WIDTH, y: (canvas.height-PADDLE_HEIGHT)/2, vy: 0 };
+    let paddleRight = { x: canvas.width-18-PADDLE_WIDTH, y: (canvas.height-AI_PADDLE_HEIGHT)/2, vy: 0 };
 
     let ball = {
       x: (canvas.width-BALL_SIZE)/2,
@@ -295,15 +298,21 @@
         ctx.fillRect(canvas.width/2-2, y, 4, 18);
       }
 
-      // Paddles
-      [paddleLeft, paddleRight].forEach(pad => {
-        ctx.save();
-        ctx.shadowColor = COLOR_PADDLE_SHADOW;
-        ctx.shadowBlur = 10;
-        ctx.fillStyle = COLOR_PADDLE;
-        ctx.fillRect(pad.x, pad.y, PADDLE_WIDTH, PADDLE_HEIGHT);
-        ctx.restore();
-      });
+      // Left Paddle (Player)
+      ctx.save();
+      ctx.shadowColor = COLOR_PADDLE_SHADOW;
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = COLOR_PADDLE;
+      ctx.fillRect(paddleLeft.x, paddleLeft.y, PADDLE_WIDTH, PADDLE_HEIGHT);
+      ctx.restore();
+
+      // Right Paddle (AI)
+      ctx.save();
+      ctx.shadowColor = COLOR_PADDLE_SHADOW;
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = COLOR_PADDLE;
+      ctx.fillRect(paddleRight.x, paddleRight.y, PADDLE_WIDTH, AI_PADDLE_HEIGHT);
+      ctx.restore();
 
       // Ball
       ctx.save();
@@ -326,7 +335,7 @@
         ctx.font = "bold 1.8rem Montserrat, Arial";
         ctx.textAlign = "center";
         ctx.fillText(
-          leftScore >= maxScore ? "Left Wins!" : "Right Wins!",
+          leftScore >= maxScore ? "Player Wins!" : "AI Wins!",
           canvas.width/2, canvas.height/2-18
         );
         ctx.font = "1.2rem Montserrat, Arial";
@@ -335,15 +344,18 @@
     }
 
     function update() {
-      // Paddle movement (W/S and Up/Down arrows)
+      // Paddle movement (W/S for player)
       if (keys['w']) paddleLeft.y -= PADDLE_SPEED;
       if (keys['s']) paddleLeft.y += PADDLE_SPEED;
-      if (keys['ArrowUp']) paddleRight.y -= PADDLE_SPEED;
-      if (keys['ArrowDown']) paddleRight.y += PADDLE_SPEED;
-
       // Stay in bounds
       paddleLeft.y = Math.max(0, Math.min(canvas.height-PADDLE_HEIGHT, paddleLeft.y));
-      paddleRight.y = Math.max(0, Math.min(canvas.height-PADDLE_HEIGHT, paddleRight.y));
+
+      // AI paddle follows ball directly and is always on time
+      if (leftScore < maxScore && rightScore < maxScore) {
+        let aiTarget = ball.y + BALL_SIZE/2 - AI_PADDLE_HEIGHT/2;
+        // "Snap" AI paddle directly for unbeatable, but clamp to bounds
+        paddleRight.y = Math.max(0, Math.min(canvas.height-AI_PADDLE_HEIGHT, aiTarget));
+      }
 
       // Ball movement (if not game over)
       if (leftScore < maxScore && rightScore < maxScore) {
@@ -356,7 +368,7 @@
           ball.y = Math.max(0, Math.min(canvas.height-BALL_SIZE, ball.y));
         }
 
-        // Paddle collision (left)
+        // Paddle collision (left/player)
         if (ball.x <= paddleLeft.x+PADDLE_WIDTH &&
             ball.y+BALL_SIZE > paddleLeft.y &&
             ball.y < paddleLeft.y+PADDLE_HEIGHT) {
@@ -366,13 +378,13 @@
           ball.vy += (ball.y+BALL_SIZE/2-(paddleLeft.y+PADDLE_HEIGHT/2))/14;
         }
 
-        // Paddle collision (right)
+        // Paddle collision (right/AI)
         if (ball.x+BALL_SIZE >= paddleRight.x &&
             ball.y+BALL_SIZE > paddleRight.y &&
-            ball.y < paddleRight.y+PADDLE_HEIGHT) {
+            ball.y < paddleRight.y+AI_PADDLE_HEIGHT) {
           ball.x = paddleRight.x-BALL_SIZE;
           ball.vx *= -1.08;
-          ball.vy += (ball.y+BALL_SIZE/2-(paddleRight.y+PADDLE_HEIGHT/2))/14;
+          ball.vy += (ball.y+BALL_SIZE/2-(paddleRight.y+AI_PADDLE_HEIGHT/2))/14;
         }
 
         // Score (left misses)
@@ -380,7 +392,7 @@
           rightScore += 1;
           resetBall(-1);
         }
-        // Score (right misses)
+        // Score (right/AI misses)
         if (ball.x > canvas.width) {
           leftScore += 1;
           resetBall(1);
@@ -399,27 +411,20 @@
     // Controls
     window.addEventListener('keydown', function(e) {
       // Prevent arrow key page scroll if playing
-      if (["ArrowUp","ArrowDown"].includes(e.key)) {
-        e.preventDefault();
-      }
+      if(['ArrowUp','ArrowDown',' '].includes(e.key)) e.preventDefault();
       keys[e.key.toLowerCase()] = true;
-
-      // Space to restart if game ended
-      if ((leftScore >= maxScore || rightScore >= maxScore) && e.key === ' ') {
-        leftScore = 0; rightScore = 0;
+      // Restart on space
+      if (e.key === " " && (leftScore >= maxScore || rightScore >= maxScore)) {
+        leftScore = 0;
+        rightScore = 0;
         resetBall(Math.random() > 0.5 ? 1 : -1);
       }
-    });
+    }, {passive:false});
     window.addEventListener('keyup', function(e) {
       keys[e.key.toLowerCase()] = false;
     });
 
-    // Prevent page scrolling with arrow keys (for accessibility)
-    window.addEventListener('keydown', function(e) {
-      if(["ArrowUp", "ArrowDown", " "].includes(e.key)) e.preventDefault();
-    }, {passive:false});
-
-    // Init
+    // Start Game
     resetBall(Math.random() > 0.5 ? 1 : -1);
     loop();
   </script>
