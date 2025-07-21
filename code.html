@@ -1,1 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontier Labs • Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Futuristic Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --yellow: #ffb347;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 80%, #ff9033 100%);
+      --black: #181818;
+      --grey: #ececec;
+      --dark-grey: #232323;
+      --nav-glass: rgba(24,28,38,0.91);
+      --panel-glass: rgba(38,40,44,0.89);
+      --hero-glass: rgba(30,32,36,0.90);
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a1f 0%, #282a33 55%, #1d1e22 100%);
+      color: var(--grey);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    header {
+      background: var(--nav-glass);
+      backdrop-filter: blur(12px);
+      padding: 1.3rem 0 1.1rem 0;
+      box-shadow: 0 6px 32px 0 #161920bb, 0 2px 14px 0 #ff6a0018;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1.5px solid #22292f;
+    }
+    .logo {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      margin-bottom: 0.22rem;
+      filter: drop-shadow(0 0 6px #ffb34745);
+    }
+    nav {
+      margin-top: 0.3rem;
+      display: flex;
+      gap: 1.12rem;
+    }
+    nav a {
+      color: #e3e3e3;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      text-decoration: none;
+      font-size: 1.07rem;
+      letter-spacing: 1.2px;
+      padding: 0.36rem 1.15rem;
+      border-radius: 20px;
+      border: none;
+      background: none;
+      position: relative;
+      transition: color 0.2s, background 0.2s, box-shadow 0.18s;
+      z-index: 1;
+      overflow: hidden;
+      font-weight: 600;
+    }
+    nav a:hover:not(.resume-btn) {
+      color: var(--orange);
+      background: #232323;
+      box-shadow: 0 0 10px #ff6a0044;
+    }
+    .resume-btn {
+      color: #232323;
+      font-weight: 900;
+      padding: 0.36rem 1.6rem;
+      border-radius: 28px;
+      background: var(--orange-grad);
+      box-shadow: 0 0 14px 3px var(--orange), 0 0 22px 1px #ffb34788;
+      text-shadow: 0 0 2px #ffb34799;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.24rem;
+      transition: box-shadow 0.22s, background 0.21s, color 0.18s;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-btn:hover, .resume-btn:focus {
+      color: #fff;
+      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
+      box-shadow: 0 0 32px 9px #ff903355;
+      outline: 2px solid #ffb34799;
+    }
+    .hero {
+      background: linear-gradient(120deg, #232532 38%, #ff6a0027 62%, #232323 100%);
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 6px 40px 0 #1d1e22cc, 0 1.2px 6px #ff6a0012;
+      margin: 0 auto;
+      margin-bottom: 3rem;
+      max-width: 970px;
+      padding: 3.5rem 1.2rem 2.8rem 1.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero h1 {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 3.1rem;
+      font-weight: 900;
+      letter-spacing: 2.4px;
+      margin-bottom: 0.7rem;
+      margin-top: 0;
+      text-shadow: 0 0 24px #ffb34755;
+      filter: drop-shadow(0 0 15px #ffb34722);
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    .hero p {
+      color: #f7f7f7;
+      font-size: 1.21rem;
+      max-width: 660px;
+      margin: 0 auto 1.2rem auto;
+      letter-spacing: 1.05px;
+      text-shadow: 0 0 12px #1b1b2ba0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+    }
+    section {
+      max-width: 1000px;
+      margin: 2.6rem auto 0 auto;
+      padding: 2.2rem 1.4rem;
+      background: var(--panel-glass);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0021;
+      border: 1.1px solid #232323;
+      transition: background 0.3s;
+      position: relative;
+    }
+    section h2 {
+      color: var(--orange);
+      font-size: 2.1rem;
+      margin-bottom: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      text-shadow: 0 0 6px #ffb34740;
+      margin-top: 0;
+    }
+    .code-projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.6rem;
+      justify-content: center;
+    }
+    .code-card {
+      flex: 1 1 260px;
+      background: linear-gradient(120deg, #232323 68%, #ff6a0016 100%);
+      border-left: 4px solid var(--orange);
+      border-radius: 13px;
+      padding: 1.3rem 1.1rem 1.1rem 1.2rem;
+      box-shadow: 0 2px 14px #ffb34718, 0 1.5px 6px #ff6a0012;
+      margin-bottom: 1rem;
+      min-width: 220px;
+      max-width: 330px;
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.18s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .code-card:hover {
+      box-shadow: 0 0 24px 0 #ffb34733;
+      border-left: 4px solid #ffb347;
+      background: linear-gradient(120deg, #232323 40%, #ffb34722 100%);
+    }
+    .code-title {
+      color: var(--orange);
+      font-size: 1.11rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px #ffb34722;
+    }
+    .code-desc {
+      font-size: 1rem;
+      color: #ececec;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .code-link {
+      align-self: flex-start;
+      background: var(--orange-grad);
+      color: #232323;
+      font-weight: 700;
+      border-radius: 16px;
+      padding: 0.44rem 1.3rem;
+      font-size: 1.01rem;
+      border: none;
+      outline: none;
+      box-shadow: 0 0 10px 1px #ff6a0033;
+      cursor: pointer;
+      transition: background 0.17s, color 0.15s, box-shadow 0.18s;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      text-decoration: none;
+    }
+    .code-link:hover, .code-link:focus {
+      background: linear-gradient(90deg, #ff6a00 0%, #ffb347 100%);
+      color: #fff;
+      box-shadow: 0 0 24px 6px #ffb34744;
+    }
+    footer {
+      background: var(--nav-glass);
+      color: var(--grey);
+      text-align: center;
+      padding: 1.1rem 0 1rem 0;
+      margin-top: 3rem;
+      font-size: 1.02rem;
+      letter-spacing: 1px;
+      border-top: 1px solid #282828;
+      box-shadow: 0 -4px 18px 0 #ff6a0011;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    /* Responsive */
+    @media (max-width: 1100px) {
+      section { padding: 1.1rem 0.2rem; }
+      .code-projects { gap: 1.2rem; }
+      .code-card { padding: 1rem 0.5rem 0.9rem 1rem; }
+      h1 { font-size: 2.1rem; }
+      .hero { padding: 2.2rem 0.4rem 2.6rem 0.4rem; }
+    }
+    @media (max-width: 700px) {
+      nav { flex-direction: column; gap: 0.5rem; }
+      .logo { font-size: 1.45rem; }
+      section h2 { font-size: 1.32rem; }
+      .hero h1 { font-size: 2rem; }
+      .code-projects { flex-direction: column; align-items: center; }
+      .code-card { min-width: unset; max-width: unset; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="code.html">Code</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Contact</a>
+      <a href="resume.html" class="resume-btn">Resume</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Open Source, Automations & Tools</h1>
+    <p>
+      Browse code projects, automations, and scripts designed, written, and shared by Frontier Labs.<br>
+      <span style="color: #fff; font-weight:700;">CAD tools</span> •
+      <span style="color: #fff; font-weight:700;">3D Printer scripts</span> •
+      <span style="color: #fff; font-weight:700;">Automation</span> •
+      <span style="color: #fff;">Rapid Prototyping</span>
+    </p>
+  </div>
+
+  <section>
+    <h2>Featured Code Projects</h2>
+    <div class="code-projects">
+      <div class="code-card">
+        <div class="code-title">3D Printer G-Code Optimizer</div>
+        <div class="code-desc">
+          A Python script that cleans and optimizes G-code for Creality and Bambu Labs printers. Features path smoothing, retraction tuning, and auto-bed leveling macros.
+        </div>
+        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/GCODE-OPTIMIZER" target="_blank">View on GitHub</a>
+      </div>
+      <div class="code-card">
+        <div class="code-title">Automated Lure Painter</div>
+        <div class="code-desc">
+          Arduino and Python code for an automated spinner and lure painting machine. Includes live serial control and template management.
+        </div>
+        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/LURE-PAINTER" target="_blank">View on GitHub</a>
+      </div>
+      <div class="code-card">
+        <div class="code-title">Rapid Product Configurator</div>
+        <div class="code-desc">
+          A browser-based tool for customizing product dimensions and previewing in 3D before printing or CNC fabrication.
+        </div>
+        <a class="code-link" href="https://github.com/YOUR-GITHUB-USERNAME/PRODUCT-CONFIGURATOR" target="_blank">View on GitHub</a>
+      </div>
+      <!-- Add more code cards as needed -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
+</body>
+</html>
 
