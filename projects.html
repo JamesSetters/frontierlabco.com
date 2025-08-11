@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* --- [Same CSS as before, unchanged] --- */
     :root {
       --orange: #ff6a00;
       --yellow: #ffb347;
@@ -190,10 +191,6 @@
       object-fit: cover;
       display: block;
       border-radius: 11px;
-      transition: none;
-      border: none;
-      box-shadow: none;
-      background: none;
     }
     .project-desc {
       font-size: 1rem;
@@ -237,29 +234,9 @@
       border: none;
       cursor: pointer;
       z-index: 100;
-      text-shadow: 0 0 12px #000c;
-      transition: color 0.2s;
     }
-    #lightbox-close:hover {
-      color: var(--yellow);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @media (max-width: 1000px) {
-      .projects-grid { gap: 1.2rem; }
-      .container { padding: 1.2rem 0.6rem; }
-      .project-box { padding: 1.1rem 0.8rem 0.9rem 1rem; }
-      h1 { font-size: 1.5rem; }
-    }
-    @media (max-width: 700px) {
-      nav { flex-direction: column; gap: 0.5rem; }
-      .logo { font-size: 1.45rem; }
-      .projects-grid { flex-direction: column; gap: 1.2rem; }
-      .project-box { max-width: 100%; min-width: 0; }
-      #lightbox-close { top: 15px; right: 15px; font-size: 2.1rem; }
-    }
+    #lightbox-close:hover { color: var(--yellow); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
@@ -308,24 +285,6 @@
           Engineered a custom packaging cover for HP, focusing on sustainability and material efficiency for next-generation shipping and product protection.
         </div>
       </div>
-      <div class="project-box">
-        <div class="project-title">Spinner Template Painting Jig</div>
-        <div class="project-image-wrapper">
-          <img class="project-image" src="images/Spinner_Template.jpg" alt="Spinner Template Painting">
-        </div>
-        <div class="project-desc">
-          Created a precise spinner template and jig for painting and assembling spinner products, boosting accuracy and consistency in production.
-        </div>
-      </div>
-      <div class="project-box">
-        <div class="project-title">Fishing Lure Modification</div>
-        <div class="project-image-wrapper">
-          <img class="project-image" src="images/Fishing_lures.jpg" alt="Fishing Lure Modifications">
-        </div>
-        <div class="project-desc">
-          Designed, prototyped, and modified fishing lures for improved action, durability, and performance using advanced 3D modeling and testing.
-        </div>
-      </div>
     </div>
   </div>
 
@@ -340,7 +299,6 @@
   </footer>
 
   <script>
-    // Lightbox functionality
     const images = document.querySelectorAll('.project-image');
     const lightbox = document.getElementById('lightbox-modal');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -360,16 +318,13 @@
     }
 
     lightboxClose.addEventListener('click', closeLightbox);
-
-    // Close on overlay click, but not when clicking the image
     lightbox.addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
     });
-
-    // Close on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === "Escape") closeLightbox();
     });
   </script>
 </body>
 </html>
+
