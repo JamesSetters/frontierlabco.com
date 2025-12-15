@@ -210,7 +210,7 @@
       <a href="services.html">Services</a>
       <a href="projects.html">Projects</a>
       <a href="code.html">Code</a>
-      <a href="#" id="product-tab">Product</a>
+      <a href="shop.html" data-product-link>Product</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
@@ -240,6 +240,7 @@
     &copy; 2025 Frontier Labs. All rights reserved.
   </footer>
 
+  <script src="product-guard.js"></script>
   <script>
     // --- Pong Game Logic ---
 
@@ -428,19 +429,6 @@
     resetBall(Math.random() > 0.5 ? 1 : -1);
     loop();
 
-    // Password gate for Product tab
-    const PRODUCT_PASSWORD = "Product0001??";
-    const PRODUCT_URL = "shop.html";
-    document.getElementById('product-tab').addEventListener('click', function(event) {
-      event.preventDefault();
-      const input = prompt("Enter the Product password:");
-      if (input === null) return;
-      if (input === PRODUCT_PASSWORD) {
-        window.location.href = PRODUCT_URL;
-      } else {
-        alert("Incorrect password. Please try again.");
-      }
-    });
   </script>
 </body>
 </html>

@@ -343,7 +343,7 @@
     }
   </style>
 </head>
-<body>
+<body data-api-endpoint="https://your-render-service.onrender.com/api/rank">
   <header>
     <div class="logo">Frontier Labs</div>
     <nav>
@@ -351,7 +351,7 @@
       <a href="services.html">Services</a>
       <a href="projects.html">Projects</a>
       <a href="code.html">Code</a>
-      <a href="shop.html">Product</a>
+      <a href="shop.html" data-product-link>Product</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
@@ -405,112 +405,11 @@
   <footer>
     &copy; 2025 Frontier Labs. All rights reserved.
   </footer>
+  <script src="product-guard.js"></script>
+  <script src="recipes-data.js"></script>
   <script>
-    const OPENAI_API_KEY = "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";
-
-    const RECIPES = [
-      { id: "R01", title: "Sunrise Oat Bowl", details: "Warm oats topped with honey, banana slices, chia seeds, and cinnamon." },
-      { id: "R02", title: "Quick Veggie Wrap", details: "Whole-wheat wrap stuffed with hummus, spinach, shredded carrot, and cucumber ribbons." },
-      { id: "R03", title: "Lemon Herb Chicken Bites", details: "Seared chicken tossed in lemon juice, chopped parsley, and garlic butter." },
-      { id: "R04", title: "Garlic Butter Shrimp Toss", details: "Sauté shrimp with garlic butter, chili flakes, and parsley, then serve over rice." },
-      { id: "R05", title: "Spicy Chickpea Salad", details: "Chickpeas with cherry tomatoes, red onion, cilantro, and smoky paprika vinaigrette." },
-      { id: "R06", title: "Rainbow Quinoa Mix", details: "Tri-color quinoa folded with roasted peppers, corn, scallions, and lime zest." },
-      { id: "R07", title: "Zesty Tuna Lettuce Cups", details: "Tuna mixed with Greek yogurt, dill, capers, and lemon in crisp lettuce cups." },
-      { id: "R08", title: "Caprese Stacks", details: "Layer tomato slices, mozzarella, and basil leaves, then drizzle balsamic glaze." },
-      { id: "R09", title: "Maple Dijon Salmon", details: "Roast salmon brushed with maple syrup, Dijon mustard, and cracked pepper." },
-      { id: "R10", title: "Sweet Potato Hash", details: "Dice sweet potatoes with bell pepper, onion, and cumin for a hearty skillet." },
-      { id: "R11", title: "Tex-Mex Rice Bowl", details: "Fluffy rice topped with black beans, pico de gallo, avocado, and cheddar." },
-      { id: "R12", title: "Coconut Lime Tilapia", details: "Pan-sear tilapia in coconut milk with lime zest, garlic, and cilantro." },
-      { id: "R13", title: "Crisp Apple Walnut Salad", details: "Mixed greens with sliced apple, toasted walnuts, and maple vinaigrette." },
-      { id: "R14", title: "Teriyaki Tofu Stir", details: "Tofu cubes glazed with teriyaki sauce alongside broccoli and snap peas." },
-      { id: "R15", title: "Tomato Basil Soupette", details: "Blend roasted tomatoes with basil, garlic, and veggie broth for a quick soup." },
-      { id: "R16", title: "Chili Lime Corn Cups", details: "Charred corn tossed with lime juice, cotija cheese, and chili powder." },
-      { id: "R17", title: "Greek Yogurt Parfait", details: "Layer Greek yogurt, berries, crunchy granola, and a honey drizzle." },
-      { id: "R18", title: "Mango Salsa Chicken", details: "Grilled chicken breasts topped with mango, red onion, jalapeño, and mint." },
-      { id: "R19", title: "Pesto Pasta Snaps", details: "Short pasta coated with basil pesto, blistered tomatoes, and parmesan." },
-      { id: "R20", title: "Sesame Ginger Noodles", details: "Chilled noodles dressed in sesame oil, fresh ginger, and scallions." },
-      { id: "R21", title: "Citrus Avocado Toast", details: "Toast topped with mashed avocado, grapefruit segments, and flaky salt." },
-      { id: "R22", title: "BBQ Turkey Sliders", details: "Shredded turkey in smoky BBQ sauce on mini buns with quick slaw." },
-      { id: "R23", title: "Mushroom Spin Toast", details: "Sauté mushrooms and spinach with thyme, pile onto crusty toast." },
-      { id: "R24", title: "Honey Garlic Drumettes", details: "Roast chicken drumettes glazed with honey, soy sauce, and garlic." },
-      { id: "R25", title: "Cranberry Couscous", details: "Fluffy couscous mixed with dried cranberries, toasted almonds, and parsley." },
-      { id: "R26", title: "Black Bean Quesa-Pockets", details: "Fold tortillas with black beans, cheese, corn, and griddle until crisp." },
-      { id: "R27", title: "Smoky Lentil Stew", details: "Red lentils simmered with smoked paprika, tomatoes, and kale." },
-      { id: "R28", title: "Spinach Feta Egg Bake", details: "Egg casserole packed with spinach, feta crumbles, and herbs." },
-      { id: "R29", title: "Roasted Beet Stack", details: "Layer roasted beets, goat cheese, and arugula with olive oil." },
-      { id: "R30", title: "Pepperoni Cauli Bites", details: "Roasted cauliflower tossed with marinara, pepperoni, and mozzarella." },
-      { id: "R31", title: "Garden Frittata Slice", details: "Frittata filled with bell pepper, zucchini, and chives." },
-      { id: "R32", title: "Lime Cilantro Rice", details: "Steamy rice finished with lime juice, lime zest, and chopped cilantro." },
-      { id: "R33", title: "Peanut Zoodle Bowl", details: "Zucchini noodles coated with peanut sauce, carrots, and edamame." },
-      { id: "R34", title: "Veggie Sushi Cups", details: "Mini nori cups with rice, avocado, cucumber, and sesame." },
-      { id: "R35", title: "Creamy Tomato Penne", details: "Penne tossed in silky tomato cream sauce with basil." },
-      { id: "R36", title: "Herb Butter Steak Tips", details: "Seared steak bites finished with garlic herb butter drizzle." },
-      { id: "R37", title: "Garden Gazpacho Sip", details: "Chilled tomato cucumber soup blended with vinegar and herbs." },
-      { id: "R38", title: "Savory Yogurt Bowl", details: "Plain yogurt topped with olive oil, cherry tomatoes, and za'atar." },
-      { id: "R39", title: "Mediterranean Pita Pizza", details: "Toasted pita spread with hummus, olives, cucumber, and feta." },
-      { id: "R40", title: "Pineapple Fried Rice", details: "Fried rice studded with pineapple, peas, and toasted cashews." },
-      { id: "R41", title: "Cinnamon Apple Skillet", details: "Sauté apple slices with butter, cinnamon, and nutmeg." },
-      { id: "R42", title: "Lemon Garlic Broccolini", details: "Roast broccolini spears with lemon zest, garlic, and olive oil." },
-      { id: "R43", title: "Maple Glazed Carrots", details: "Baby carrots roasted with maple syrup and thyme sprigs." },
-      { id: "R44", title: "Spiced Pumpkin Soup", details: "Pumpkin purée simmered with curry powder and coconut milk." },
-      { id: "R45", title: "Rosemary White Beans", details: "White beans warmed with rosemary, garlic, and extra virgin olive oil." },
-      { id: "R46", title: "Caramelized Onion Flatbread", details: "Flatbread layered with caramelized onion, feta, and thyme." },
-      { id: "R47", title: "Quick Kimchi Fried Eggs", details: "Seared kimchi and crispy fried eggs over hot rice." },
-      { id: "R48", title: "Jalapeño Lime Slaw", details: "Crunchy cabbage slaw tossed with jalapeño lime dressing." },
-      { id: "R49", title: "Ginger Miso Cod", details: "Baked cod brushed with ginger, miso paste, and sesame oil." },
-      { id: "R50", title: "Harissa Chickpea Wrap", details: "Warm harissa chickpeas wrapped with greens and yogurt sauce." },
-      { id: "R51", title: "Curry Yogurt Chicken Salad", details: "Diced chicken with curry yogurt dressing, celery, and grapes." },
-      { id: "R52", title: "Smoky Sweet Plantains", details: "Pan-fried plantains finished with smoked paprika and honey." },
-      { id: "R53", title: "Garlic Herb Roasted Nuts", details: "Mixed nuts roasted with garlic powder, rosemary, and sea salt." },
-      { id: "R54", title: "Warm Berry Compote Yogurt", details: "Warm berries spooned over chilled yogurt with lemon zest." },
-      { id: "R55", title: "Turmeric Golden Milk Oats", details: "Oats simmered in turmeric milk with black pepper and honey." },
-      { id: "R56", title: "Crunchy Thai Salad Cup", details: "Romaine cups filled with cabbage, peanuts, and lime dressing." },
-      { id: "R57", title: "Savory Cottage Toast", details: "Cottage cheese on toast topped with tomato slices and pepitas." },
-      { id: "R58", title: "Poblano Veggie Tacos", details: "Roasted poblanos stuffed with corn, beans, and queso fresco." },
-      { id: "R59", title: "Easy Poké Bowl", details: "Rice bowl with marinated salmon, cucumber, scallions, and avocado." },
-      { id: "R60", title: "Maple Mustard Pork Bites", details: "Seared pork bites coated in maple and Dijon glaze." },
-      { id: "R61", title: "Chimichurri Cauliflower", details: "Roasted cauliflower smothered in bright chimichurri sauce." },
-      { id: "R62", title: "Baked Falafel Bites", details: "Herb-packed chickpea patties baked and served with tahini dip." },
-      { id: "R63", title: "Citrus Dill Potato Salad", details: "Baby potatoes tossed with lemon juice, dill, and olive oil." },
-      { id: "R64", title: "Cucumber Watermelon Salad", details: "Cubes of cucumber, watermelon, feta, and mint." },
-      { id: "R65", title: "Creamy Pea Mint Pasta", details: "Pasta with green peas, mint pesto, and a splash of cream." },
-      { id: "R66", title: "Tamarind Glazed Wings", details: "Crispy wings tossed in tangy tamarind and brown sugar glaze." },
-      { id: "R67", title: "Avocado Corn Toast", details: "Toast with mashed avocado, charred corn, and lime salt." },
-      { id: "R68", title: "Balsamic Steak Salad", details: "Greens topped with steak slices, cherry tomatoes, and balsamic drizzle." },
-      { id: "R69", title: "Garlic Parmesan Broccoli Pasta", details: "Short pasta thrown with roasted broccoli and parmesan crumbs." },
-      { id: "R70", title: "Simple Ramen Upgrade", details: "Instant ramen boosted with soft egg, scallions, and sesame oil." },
-      { id: "R71", title: "Basil Lime Watermelon Cups", details: "Watermelon scoops tossed with basil ribbons and lime zest." },
-      { id: "R72", title: "Apple Gouda Melt", details: "Melt Gouda and apple slices on seeded whole-grain bread." },
-      { id: "R73", title: "Ranch Roasted Chickpeas", details: "Crunchy chickpeas baked with ranch seasoning blend." },
-      { id: "R74", title: "Saffron Rice Pilaf", details: "Rice simmered with saffron threads, peas, and almonds." },
-      { id: "R75", title: "Cran-Orange Overnight Oats", details: "Overnight oats with dried cranberries, orange zest, and almonds." },
-      { id: "R76", title: "Lemon Thyme Cod Parcels", details: "Cod baked in foil with lemon slices, thyme, and butter." },
-      { id: "R77", title: "Savory Waffle Sandwich", details: "Toasted waffles filled with scrambled eggs, cheddar, and spinach." },
-      { id: "R78", title: "Maple Bacon Brussels", details: "Roasted Brussels sprouts tossed with crispy bacon and maple syrup." },
-      { id: "R79", title: "Smoky Tomato Jam Toast", details: "Toast topped with smoky tomato jam and whipped ricotta." },
-      { id: "R80", title: "Cheesy Polenta Bowl", details: "Creamy polenta crowned with sautéed mushrooms and parmesan." },
-      { id: "R81", title: "Cherry Tomato Tartine", details: "Toasted bread spread with whipped feta and cherry tomatoes." },
-      { id: "R82", title: "Coconut Curry Soup Mug", details: "Fast coconut curry broth with veggies in a mug-friendly portion." },
-      { id: "R83", title: "Salsa Verde Chicken Skillet", details: "Chicken thighs simmered in salsa verde with onions and cilantro." },
-      { id: "R84", title: "Garlic Spinach Orzo", details: "Orzo pasta tossed with garlic, wilted spinach, and lemon." },
-      { id: "R85", title: "Herb Ricotta Stuffed Peppers", details: "Mini peppers filled with garlic herb ricotta and baked." },
-      { id: "R86", title: "Quick Pumpkin Ravioli", details: "Store-bought ravioli tossed with brown butter, sage, and pepitas." },
-      { id: "R87", title: "Tangy Pomegranate Salad", details: "Greens topped with pomegranate seeds, oranges, and toasted seeds." },
-      { id: "R88", title: "Sesame Crusted Tofu Bites", details: "Tofu coated in sesame seeds, baked, and served with soy dip." },
-      { id: "R89", title: "Pear Blue Cheese Flatbread", details: "Flatbread with sliced pear, blue cheese, and honey drizzle." },
-      { id: "R90", title: "Chili Crisp Udon", details: "Chewy udon noodles tossed with chili crisp, scallions, and sesame." },
-      { id: "R91", title: "Lemon Kale Caesar Wrap", details: "Zippy kale Caesar salad wrapped in a warm tortilla." },
-      { id: "R92", title: "Dill Salmon Salad Cups", details: "Salmon salad with dill spooned into cucumber cups." },
-      { id: "R93", title: "Spicy Peanut Sweet Potatoes", details: "Roasted sweet potatoes drizzled with spicy peanut sauce." },
-      { id: "R94", title: "Honey Thyme Roasted Pears", details: "Pears roasted with honey, thyme, and a pinch of salt." },
-      { id: "R95", title: "Mushroom Barley Bowl", details: "Barley simmered with mushrooms, thyme, and veggie broth." },
-      { id: "R96", title: "Pico Avocado Omelet", details: "Fluffy omelet stuffed with pico de gallo and diced avocado." },
-      { id: "R97", title: "Citrus Shrimp Grain Bowl", details: "Shrimp piled on farro with orange segments and greens." },
-      { id: "R98", title: "Charred Veggie Panini", details: "Grilled vegetables pressed with provolone on ciabatta." },
-      { id: "R99", title: "Blackberry Goat Cheese Toast", details: "Toast spread with goat cheese, blackberries, and mint." },
-      { id: "R100", title: "Fresh Basil Eggplant Stacks", details: "Grilled eggplant layered with basil, tomato, and mozzarella." }
-    ];
-
+    const RECIPES = window.RECIPES || [];
+    const API_ENDPOINT = document.body.dataset.apiEndpoint || "/api/rank";
     const recipeListEl = document.getElementById("recipe-list");
     const aiResultsEl = document.getElementById("ai-results");
     const aiFeedbackEl = document.getElementById("ai-feedback");
@@ -565,10 +464,6 @@
       const userQuery = queryInput.value.trim();
       if (!userQuery) {
         setFeedback(aiFeedbackEl, "Please describe what you need before searching.", "error");
-        return;
-      }
-      if (!OPENAI_API_KEY || OPENAI_API_KEY.includes("YOUR_CHATGPT_API_KEY_HERE")) {
-        setFeedback(aiFeedbackEl, "Update OPENAI_API_KEY inside shop.html to your ChatGPT key.", "error");
         return;
       }
       setFeedback(aiFeedbackEl, "Connecting to ChatGPT to rank recipes...", "loading");
@@ -680,43 +575,26 @@
     }
 
     async function fetchRanking(userQuery) {
-      const recipeContext = RECIPES.map(recipe => `${recipe.id} | ${recipe.title} | ${recipe.details}`).join("\\n");
-      const payload = {
-        model: "gpt-4o-mini",
-        temperature: 0.2,
-        messages: [
-          {
-            role: "system",
-            content: "You rank recipes from the provided list. Respond with JSON only using this shape: {\"primary\":\"R##\",\"secondary\":[\"R##\",\"R##\"]}. Choose the closest match for primary and the next two closest for secondary. Never invent new recipes, never summarize."
-          },
-          {
-            role: "user",
-            content: `Recipe list:\\n${recipeContext}\\n\\nUser request: ${userQuery}\\nReturn JSON exactly with the recipe ids.`
-          }
-        ]
-      };
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${OPENAI_API_KEY}`
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ query: userQuery })
       });
       if (!response.ok) {
-        throw new Error("ChatGPT API error. Check the key and try again.");
+        const errorPayload = await parseJsonSafe(response);
+        const message = errorPayload?.error || "Server error while ranking recipes.";
+        throw new Error(message);
       }
-      const data = await response.json();
-      const raw = data?.choices?.[0]?.message?.content?.trim();
-      if (!raw) {
-        throw new Error("ChatGPT did not return any ranking text.");
-      }
-      const cleaned = raw.replace(/```json|```/g, "").trim();
+      return response.json();
+    }
+
+    async function parseJsonSafe(response) {
       try {
-        return JSON.parse(cleaned);
-      } catch (parseError) {
-        console.error("Parse error:", cleaned);
-        throw new Error("Unable to parse ChatGPT ranking response.");
+        return await response.json();
+      } catch {
+        return null;
       }
     }
   </script>
