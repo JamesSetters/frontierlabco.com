@@ -581,7 +581,12 @@
           "Content-Type": "application/json",
           "X-Site-Token": "8f3a7c2d9e4b1a6c0f5e8d2b7a9c4e1f"
         },
-        body: JSON.stringify({ query: userQuery })
+        body: JSON.stringify({
+          query: userQuery,
+          recipes: RECIPES.map(r => ({
+            id: r.id,
+            title: r.title,
+            details: r.details
       });
       if (!response.ok) {
         const errorPayload = await parseJsonSafe(response);
