@@ -5,9 +5,29 @@ const RECIPES = require('../recipes-data.js');
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 60_000);
 const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX || 5);
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN;
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '';
+const allowedOrigins = ALLOWED_ORIGIN.split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 const rateLimitStore = new Map();
+
+function isOriginAllowed(origin) {
+  if (!origin || !allowedOrigins.length) {
+    return true;
+  }
+  return allowedOrigins.includes(origin);
+}
+
+function applyCorsHeaders(res, origin) {
+  if (!origin || typeof res.setHeader !== 'function') {
+    return;
+  }
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Vary', 'Origin');
+}
 
 function getClientKey(req) {
   const header = req.headers?.['x-forwarded-for'] || req.headers?.['x-real-ip'];
@@ -83,13 +103,29 @@ function parseBody(req) {
 }
 
 async function handler(req, res) {
-  if (req.method && req.method !== 'POST') {
-    respond(res, 405, { error: 'Method not allowed. Use POST.' });
+  const origin = req.headers?.origin;
+  if (origin && !isOriginAllowed(origin)) {
+    respond(res, 403, { error: 'Origin not allowed.' });
+    return;
+  }
+  if (origin) {
+    applyCorsHeaders(res, origin);
+  }
+
+  if (req.method === 'OPTIONS') {
+    if (typeof res.status === 'function') {
+      res.status(204);
+    } else {
+      res.statusCode = 204;
+    }
+    if (typeof res.end === 'function') {
+      res.end();
+    }
     return;
   }
 
-  if (ALLOWED_ORIGIN && req.headers?.origin && req.headers.origin !== ALLOWED_ORIGIN) {
-    respond(res, 403, { error: 'Origin not allowed.' });
+  if (req.method && req.method !== 'POST') {
+    respond(res, 405, { error: 'Method not allowed. Use POST.' });
     return;
   }
 
