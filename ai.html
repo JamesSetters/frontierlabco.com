@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chat - Frontier Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --yellow: #ffb347;
+      --orange-grad: linear-gradient(90deg, #ffb347 0%, #ff6a00 80%, #ff9033 100%);
+      --black: #181818;
+      --grey: #ececec;
+      --dark-grey: #232323;
+      --nav-glass: rgba(24,28,38,0.91);
+      --panel-glass: rgba(38,40,44,0.89);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #14151a 0%, #1e2026 55%, #101115 100%);
+      color: var(--grey);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--nav-glass);
+      backdrop-filter: blur(12px);
+      padding: 1.3rem 0 1.1rem 0;
+      box-shadow: 0 6px 32px 0 #161920bb, 0 2px 14px 0 #ff6a0018;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1.5px solid #22292f;
+    }
+    .logo {
+      background: var(--orange-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      margin-bottom: 0.22rem;
+      filter: drop-shadow(0 0 6px #ffb34745);
+    }
+    nav {
+      margin-top: 0.3rem;
+      display: flex;
+      gap: 1.12rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      color: #e3e3e3;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      text-decoration: none;
+      font-size: 1.07rem;
+      letter-spacing: 1.2px;
+      padding: 0.36rem 1.15rem;
+      border-radius: 20px;
+      border: none;
+      background: none;
+      position: relative;
+      transition: color 0.2s, background 0.2s, box-shadow 0.18s;
+      z-index: 1;
+      overflow: hidden;
+      font-weight: 600;
+    }
+    nav a:hover:not(.resume-btn) {
+      color: var(--orange);
+      background: #232323;
+      box-shadow: 0 0 10px #ff6a0044;
+    }
+    .resume-btn {
+      color: #232323;
+      font-weight: 900;
+      padding: 0.36rem 1.6rem;
+      border-radius: 28px;
+      background: var(--orange-grad);
+      box-shadow: 0 0 14px 3px var(--orange), 0 0 22px 1px #ffb34788;
+      text-shadow: 0 0 2px #ffb34799;
+      letter-spacing: 1.5px;
+      font-size: 1.12rem;
+      margin-left: 0.24rem;
+      transition: box-shadow 0.22s, background 0.21s, color 0.18s;
+      outline: 1.5px solid #ffb34744;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    main {
+      flex: 1;
+      width: min(1100px, 100%);
+      margin: 2rem auto 3rem auto;
+      padding: 0 1rem 2rem 1rem;
+    }
+    .chat-panel {
+      background: var(--panel-glass);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 #181818cc, 0 2px 16px 0 #ff6a0035;
+      border: 1.2px solid #232323;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .chat-panel h1 {
+      margin: 0;
+      text-align: center;
+      color: var(--orange);
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    .chat-transcript {
+      background: rgba(12,13,18,0.8);
+      border-radius: 14px;
+      border: 1px solid #2c2f37;
+      padding: 1rem;
+      min-height: 320px;
+      max-height: 480px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .chat-bubble {
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      line-height: 1.5;
+      font-size: 0.98rem;
+      box-shadow: inset 0 0 12px #0b0c11;
+    }
+    .chat-bubble.user {
+      align-self: flex-end;
+      background: rgba(255,106,0,0.2);
+      border: 1px solid rgba(255,106,0,0.4);
+    }
+    .chat-bubble.ai {
+      align-self: flex-start;
+      background: rgba(255,179,71,0.12);
+      border: 1px solid rgba(255,179,71,0.3);
+    }
+    form#chat-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    form#chat-form textarea {
+      flex: 1 1 320px;
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      border: 1px solid #2f2f2f;
+      background: rgba(17,17,19,0.65);
+      color: #fff;
+      resize: vertical;
+      min-height: 80px;
+      max-height: 180px;
+      font-family: inherit;
+    }
+    form#chat-form button {
+      border: none;
+      border-radius: 14px;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: var(--orange-grad);
+      color: #101010;
+      box-shadow: 0 0 18px #ff6a0035;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    form#chat-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px #ff903350;
+    }
+    .status {
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 0.4rem 0.6rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .status.loading { color: #ffb347; border-color: #ff903366; }
+    .status.error { color: #ffb7a4; border-color: #ff6a00aa; }
+    .status.ready { color: #c5f3c6; border-color: #4caf4f77; }
+    footer {
+      text-align: center;
+      padding: 2rem 0 3rem 0;
+      color: #c9c9c9;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Frontier Labs</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="code.html">Code</a>
+      <a href="shop.html" data-product-link>Product</a>
+      <a href="ai.html">AI</a>
+      <a href="#">Contact</a>
+      <a href="resume.html" class="resume-btn">Resume</a>
+    </nav>
+  </header>
+  <main>
+    <section class="chat-panel">
+      <h1>AI Assistant Console</h1>
+      <p style="text-align:center;max-width:640px;margin:0 auto 1rem auto;">Chat with the same AI that powers the recipe search. Ask brainstorming questions, workshop prompts, or gather quick research. Conversations stay on this device.</p>
+      <div id="chat-transcript" class="chat-transcript" aria-live="polite"></div>
+      <div id="chat-status" class="status ready">Ready for your question.</div>
+      <form id="chat-form">
+        <textarea id="chat-input" placeholder="Ask anything..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Frontier Labs. All rights reserved.
+  </footer>
+  <script src="product-guard.js"></script>
+  <script>
+    const CHAT_ENDPOINT = 'https://frontierlabco-ai-backend.onrender.com/api/chat';
+    const SITE_TOKEN = '8f3a7c2d9e4b1a6c0f5e8d2b7a9c4e1f';
+    const transcriptEl = document.getElementById('chat-transcript');
+    const statusEl = document.getElementById('chat-status');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const history = [
+      { role: 'system', content: 'You are a helpful creative assistant for Frontier Labs visitors.' }
+    ];
+
+    chatForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) {
+        return;
+      }
+      appendBubble('user', text);
+      chatInput.value = '';
+      history.push({ role: 'user', content: text });
+      setStatus('Connecting to AI...', 'loading');
+      try {
+        const reply = await sendChat(history);
+        history.push({ role: 'assistant', content: reply });
+        appendBubble('ai', reply);
+        setStatus('Response ready.', 'ready');
+      } catch (error) {
+        console.error(error);
+        appendBubble('ai', error.message || 'Chat unavailable right now.');
+        setStatus(error.message || 'Chat unavailable right now.', 'error');
+      }
+    });
+
+    function appendBubble(role, text) {
+      const bubble = document.createElement('div');
+      bubble.className = `chat-bubble ${role}`;
+      bubble.textContent = text;
+      transcriptEl.appendChild(bubble);
+      transcriptEl.scrollTop = transcriptEl.scrollHeight;
+    }
+
+    function setStatus(message, state) {
+      statusEl.textContent = message;
+      statusEl.className = `status ${state}`;
+    }
+
+    async function sendChat(messages) {
+      const response = await fetch(CHAT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Site-Token': SITE_TOKEN
+        },
+        body: JSON.stringify({ messages })
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok) {
+        const message = payload?.error || 'ChatGPT API error.';
+        const error = new Error(message);
+        throw error;
+      }
+      return payload?.reply || 'No reply received.';
+    }
+  </script>
+</body>
+</html>
