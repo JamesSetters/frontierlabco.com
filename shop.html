@@ -327,6 +327,12 @@
       color: #ffdfba;
       text-transform: uppercase;
     }
+    .recipe-justification {
+      margin: 0.4rem 0 0;
+      font-size: 0.9rem;
+      color: #ffdfba;
+      font-style: italic;
+    }
     footer {
       text-align: center;
       padding: 2rem 0 3rem 0;
@@ -358,7 +364,7 @@
   </header>
   <main class="product-page">
     <section class="ai-panel">
-      <h1>Recipe Search Engine V1.04</h1>
+      <h1>Recipe Search Engine V1.05</h1>
       <p>Enter what you are craving and let the Product AI surface the closest matches from our curated library of 100 fast, flavorful ideas.</p>
       <div class="search-panels">
         <div class="search-block">
@@ -470,11 +476,11 @@
       clearResults(aiResultsEl);
       try {
         const ranking = await fetchRanking(userQuery);
-        const rankedIds = buildRankedList(ranking);
-        if (!rankedIds.length) {
+        const suggestions = buildRankedList(ranking);
+        if (!suggestions.length) {
           throw new Error("No matching recipes returned. Try another description.");
         }
-        renderAiResults(rankedIds);
+        renderAiResults(suggestions);
         setFeedback(aiFeedbackEl, "Top matches ready. Explore the cards below.", "success");
       } catch (error) {
         console.error(error);
@@ -500,25 +506,65 @@
     }
 
     function buildRankedList(ranking) {
-      const ordered = [];
-      if (ranking && typeof ranking.primary === "string") {
-        ordered.push(ranking.primary.trim());
-      }
+      const suggestions = [];
+      pushSuggestion(suggestions, normalizeSuggestion(ranking && ranking.primary));
       if (ranking && Array.isArray(ranking.secondary)) {
-        ranking.secondary.forEach(item => {
-          if (typeof item === "string") {
-            ordered.push(item.trim());
-          }
+        ranking.secondary.forEach(entry => {
+          pushSuggestion(suggestions, normalizeSuggestion(entry));
         });
       }
-      const unique = ordered.filter((id, index) => ordered.indexOf(id) === index && recipeMap.has(id));
-      return unique.slice(0, 3);
+      return suggestions.slice(0, 3);
     }
 
-    function renderAiResults(idList) {
+    function normalizeSuggestion(entry) {
+      if (!entry) {
+        return null;
+      }
+      let id = "";
+      let reason = "";
+      if (typeof entry === "string") {
+        id = entry.trim();
+      } else if (typeof entry === "object") {
+        if (typeof entry.id === "string") {
+          id = entry.id.trim();
+        }
+        if (typeof entry.reason === "string") {
+          reason = entry.reason.trim();
+        } else if (typeof entry.justification === "string") {
+          reason = entry.justification.trim();
+        }
+      }
+      if (!id) {
+        return null;
+      }
+      if (!recipeMap.has(id)) {
+        const upperId = id.toUpperCase();
+        if (recipeMap.has(upperId)) {
+          id = upperId;
+        } else {
+          return null;
+        }
+      }
+      return {
+        id,
+        reason: reason || "Selected by AI as a close match."
+      };
+    }
+
+    function pushSuggestion(list, suggestion) {
+      if (!suggestion) {
+        return;
+      }
+      if (list.some(item => item.id === suggestion.id)) {
+        return;
+      }
+      list.push(suggestion);
+    }
+
+    function renderAiResults(suggestions) {
       const fragment = document.createDocumentFragment();
-      idList.forEach((id, index) => {
-        const recipe = recipeMap.get(id);
+      suggestions.forEach((entry, index) => {
+        const recipe = recipeMap.get(entry.id);
         if (!recipe) {
           return;
         }
@@ -533,6 +579,12 @@
         }
         badge.textContent = label;
         card.appendChild(badge);
+        if (entry.reason) {
+          const reasonEl = document.createElement("p");
+          reasonEl.className = "recipe-justification";
+          reasonEl.textContent = entry.reason;
+          card.appendChild(reasonEl);
+        }
         fragment.appendChild(card);
       });
       aiResultsEl.appendChild(fragment);
