@@ -327,6 +327,40 @@
       color: #ffdfba;
       text-transform: uppercase;
     }
+    .rate-limit-panel {
+      margin-top: 1rem;
+      border: 1px solid #2c2f37;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      background: rgba(10,12,18,0.7);
+    }
+    .rate-limit-panel h5 {
+      margin: 0 0 0.4rem 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.8px;
+      color: #ffb347;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    .rate-limit-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0.4rem;
+    }
+    .rate-limit-bar span {
+      display: block;
+      height: 100%;
+      background: var(--orange-grad);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .rate-limit-text {
+      font-size: 0.85rem;
+      color: #dcdcdc;
+    }
     .ai-diagnostics {
       margin-top: 1.5rem;
       border: 1px solid #2c2f37;
@@ -382,14 +416,14 @@
       <a href="projects.html">Projects</a>
       <a href="code.html">Code</a>
       <a href="shop.html" data-product-link>Product</a>
-      <a href="ai.html">AI</a>
+      <a href="ai.html" data-product-link>AI</a>
       <a href="#">Contact</a>
       <a href="resume.html" class="resume-btn">Resume</a>
     </nav>
   </header>
   <main class="product-page">
     <section class="ai-panel">
-      <h1>Recipe Search Engine V1.08</h1>
+      <h1>Recipe Search Engine V1.12</h1>
       <p>Enter what you are craving and let the Product AI surface the closest matches from our curated library of 100 fast, flavorful ideas.</p>
       <div class="search-panels">
         <div class="search-block">
@@ -418,6 +452,11 @@
       <div class="ai-diagnostics">
         <h4>AI Output Debug</h4>
         <pre id="ai-diagnostics" aria-live="polite">(no data yet)</pre>
+      </div>
+      <div class="rate-limit-panel">
+        <h5>Recipe Rate Limit</h5>
+        <div class="rate-limit-bar"><span id="ai-rate-bar"></span></div>
+        <div class="rate-limit-text" id="ai-rate-text">Calculating usage...</div>
       </div>
       <div class="results-panels">
         <div class="results-block">
@@ -456,6 +495,8 @@
     const keywordInput = document.getElementById("keyword-query");
     const recipeMap = new Map(RECIPES.map(recipe => [recipe.id, recipe]));
     const diagnosticsEl = document.getElementById("ai-diagnostics");
+    const rateBarEl = document.getElementById("ai-rate-bar");
+    const rateTextEl = document.getElementById("ai-rate-text");
 
     function updateDiagnostics(content) {
       diagnosticsEl.textContent = content;
@@ -467,6 +508,34 @@
       } catch {
         return String(value);
       }
+    }
+
+    function updateRateLimit(headers) {
+      if (!rateBarEl || !rateTextEl) return;
+      if (!headers) {
+        rateBarEl.style.width = '0%';
+        rateTextEl.textContent = 'Rate limit data unavailable.';
+        return;
+      }
+      const limitHeader = headers.get('ratelimit-limit');
+      const remainingHeader = headers.get('ratelimit-remaining');
+      const resetHeader = headers.get('ratelimit-reset');
+      const limit = Number(limitHeader);
+      const remaining = Number(remainingHeader);
+      if (!Number.isFinite(limit) || limit <= 0) {
+        rateBarEl.style.width = '0%';
+        rateTextEl.textContent = 'Rate limit data unavailable.';
+        return;
+      }
+      const remainingSafe = Number.isFinite(remaining) ? remaining : limit;
+      const used = Math.max(0, limit - remainingSafe);
+      const percent = Math.max(0, Math.min(100, (used / limit) * 100));
+      rateBarEl.style.width = `${percent}%`;
+      const resetSeconds = Number(resetHeader);
+      const resetCopy = Number.isFinite(resetSeconds)
+        ? `${Math.max(0, Math.round(resetSeconds))}s`
+        : 'soon';
+      rateTextEl.textContent = `${remainingSafe}/${limit} requests left (resets in ${resetCopy})`;
     }
 
     renderRecipeLibrary();
@@ -680,6 +749,7 @@
           query: userQuery
         })
       });
+      updateRateLimit(response.headers);
       const text = await response.text();
       let parsed = null;
       try {
@@ -694,10 +764,6 @@
         throw error;
       }
       return parsed;
-    }
-
-    function updateDiagnostics(content) {
-      diagnosticsEl.textContent = content;
     }
 
   </script>
