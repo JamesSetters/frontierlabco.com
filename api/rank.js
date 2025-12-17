@@ -10,6 +10,12 @@ const allowedOrigins = ALLOWED_ORIGIN.split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+if (allowedOrigins.length) {
+  console.log(`[CORS] Allowed origins: ${allowedOrigins.join(', ')}`);
+} else {
+  console.log('[CORS] No ALLOWED_ORIGIN configured; all origins permitted.');
+}
+
 const rateLimitStore = new Map();
 
 function isOriginAllowed(origin) {
@@ -25,7 +31,7 @@ function applyCorsHeaders(res, origin) {
   }
   res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Site-Token');
   res.setHeader('Vary', 'Origin');
 }
 
@@ -105,8 +111,12 @@ function parseBody(req) {
 async function handler(req, res) {
   const origin = req.headers?.origin;
   if (origin && !isOriginAllowed(origin)) {
+    console.warn(`[CORS] Blocked origin: ${origin}`);
     respond(res, 403, { error: 'Origin not allowed.' });
     return;
+  }
+  if (origin) {
+    console.log(`[CORS] Allowing origin: ${origin}`);
   }
   if (origin) {
     applyCorsHeaders(res, origin);
