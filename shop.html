@@ -683,16 +683,6 @@
       return parsed;
     }
 
-    async function parseJsonSafe(response) {
-      try {
-        return await response.json();
-      } catch {
-        return null;
-      }
-    }
-  </script>
-</body>
-</html>
     function updateDiagnostics(content) {
       diagnosticsEl.textContent = content;
     }
@@ -704,3 +694,14 @@
         return String(value);
       }
     }
+
+    async function parseJsonSafe(response) {
+      try {
+        return await response.json();
+      } catch {
+        return null;
+      }
+    }
+  </script>
+</body>
+</html>
