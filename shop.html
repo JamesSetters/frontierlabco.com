@@ -456,6 +456,18 @@
     const recipeMap = new Map(RECIPES.map(recipe => [recipe.id, recipe]));
     const diagnosticsEl = document.getElementById("ai-diagnostics");
 
+    function updateDiagnostics(content) {
+      diagnosticsEl.textContent = content;
+    }
+
+    function formatDiagnostics(value) {
+      try {
+        return JSON.stringify(value, null, 2);
+      } catch {
+        return String(value);
+      }
+    }
+
     renderRecipeLibrary();
     formEl.addEventListener("submit", handleSearch);
     keywordFormEl.addEventListener("submit", handleKeywordSearch);
@@ -687,21 +699,6 @@
       diagnosticsEl.textContent = content;
     }
 
-    function formatDiagnostics(value) {
-      try {
-        return JSON.stringify(value, null, 2);
-      } catch {
-        return String(value);
-      }
-    }
-
-    async function parseJsonSafe(response) {
-      try {
-        return await response.json();
-      } catch {
-        return null;
-      }
-    }
   </script>
 </body>
 </html>
