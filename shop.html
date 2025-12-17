@@ -502,11 +502,11 @@
         return;
       }
       setFeedback(aiFeedbackEl, "Connecting to ChatGPT to rank recipes...", "loading");
-      setDiagnostics("Waiting for AI response...");
+      updateDiagnostics("Waiting for AI response...");
       clearResults(aiResultsEl);
       try {
         const ranking = await fetchRanking(userQuery);
-        setDiagnostics(formatDiagnostics(ranking));
+        updateDiagnostics(formatDiagnostics(ranking));
         const suggestions = buildRankedList(ranking);
         if (!suggestions.length) {
           throw new Error("No matching recipes returned. Try another description.");
@@ -516,9 +516,9 @@
       } catch (error) {
         console.error(error);
         if (error.diagnostics) {
-          setDiagnostics(error.diagnostics);
+          updateDiagnostics(error.diagnostics);
         } else {
-          setDiagnostics(error.message || "No diagnostics available.");
+          updateDiagnostics(error.message || "No diagnostics available.");
         }
         setFeedback(aiFeedbackEl, error.message || "Unable to fetch recipes right now.", "error");
       }
@@ -693,7 +693,7 @@
   </script>
 </body>
 </html>
-    function setDiagnostics(content) {
+    function updateDiagnostics(content) {
       diagnosticsEl.textContent = content;
     }
 
