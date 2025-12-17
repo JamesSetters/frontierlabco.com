@@ -512,12 +512,6 @@
         });
       }
       const unique = ordered.filter((id, index) => ordered.indexOf(id) === index && recipeMap.has(id));
-      for (const recipe of RECIPES) {
-        if (unique.length >= 3) break;
-        if (!unique.includes(recipe.id)) {
-          unique.push(recipe.id);
-        }
-      }
       return unique.slice(0, 3);
     }
 
