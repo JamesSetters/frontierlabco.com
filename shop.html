@@ -327,6 +327,30 @@
       color: #ffdfba;
       text-transform: uppercase;
     }
+    .ai-diagnostics {
+      margin-top: 1.5rem;
+      border: 1px solid #2c2f37;
+      border-radius: 14px;
+      padding: 1rem;
+      background: rgba(14,15,20,0.78);
+    }
+    .ai-diagnostics h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #ffb347;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    }
+    .ai-diagnostics pre {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.85rem;
+      color: #d8d8d8;
+      background: rgba(0,0,0,0.35);
+      padding: 0.6rem;
+      border-radius: 10px;
+    }
     .recipe-justification {
       margin: 0.4rem 0 0;
       font-size: 0.9rem;
@@ -364,7 +388,7 @@
   </header>
   <main class="product-page">
     <section class="ai-panel">
-      <h1>Recipe Search Engine V1.05</h1>
+      <h1>Recipe Search Engine V1.06</h1>
       <p>Enter what you are craving and let the Product AI surface the closest matches from our curated library of 100 fast, flavorful ideas.</p>
       <div class="search-panels">
         <div class="search-block">
@@ -389,6 +413,10 @@
             </div>
           </form>
         </div>
+      </div>
+      <div class="ai-diagnostics">
+        <h4>AI Output Debug</h4>
+        <pre id="ai-diagnostics" aria-live="polite">(no data yet)</pre>
       </div>
       <div class="results-panels">
         <div class="results-block">
@@ -426,6 +454,7 @@
     const queryInput = document.getElementById("recipe-query");
     const keywordInput = document.getElementById("keyword-query");
     const recipeMap = new Map(RECIPES.map(recipe => [recipe.id, recipe]));
+    const diagnosticsEl = document.getElementById("ai-diagnostics");
 
     renderRecipeLibrary();
     formEl.addEventListener("submit", handleSearch);
@@ -473,9 +502,11 @@
         return;
       }
       setFeedback(aiFeedbackEl, "Connecting to ChatGPT to rank recipes...", "loading");
+      setDiagnostics("Waiting for AI response...");
       clearResults(aiResultsEl);
       try {
         const ranking = await fetchRanking(userQuery);
+        setDiagnostics(formatDiagnostics(ranking));
         const suggestions = buildRankedList(ranking);
         if (!suggestions.length) {
           throw new Error("No matching recipes returned. Try another description.");
@@ -484,6 +515,11 @@
         setFeedback(aiFeedbackEl, "Top matches ready. Explore the cards below.", "success");
       } catch (error) {
         console.error(error);
+        if (error.diagnostics) {
+          setDiagnostics(error.diagnostics);
+        } else {
+          setDiagnostics(error.message || "No diagnostics available.");
+        }
         setFeedback(aiFeedbackEl, error.message || "Unable to fetch recipes right now.", "error");
       }
     }
@@ -631,12 +667,20 @@
           query: userQuery
         })
       });
-      if (!response.ok) {
-        const errorPayload = await parseJsonSafe(response);
-        const message = errorPayload?.error || "Server error while ranking recipes.";
-        throw new Error(message);
+      const text = await response.text();
+      let parsed = null;
+      try {
+        parsed = text ? JSON.parse(text) : null;
+      } catch {
+        parsed = null;
       }
-      return response.json();
+      if (!response.ok) {
+        const message = parsed?.error || "Server error while ranking recipes.";
+        const error = new Error(message);
+        error.diagnostics = parsed ? formatDiagnostics(parsed) : text || message;
+        throw error;
+      }
+      return parsed;
     }
 
     async function parseJsonSafe(response) {
@@ -649,3 +693,14 @@
   </script>
 </body>
 </html>
+    function setDiagnostics(content) {
+      diagnosticsEl.textContent = content;
+    }
+
+    function formatDiagnostics(value) {
+      try {
+        return JSON.stringify(value, null, 2);
+      } catch {
+        return String(value);
+      }
+    }
